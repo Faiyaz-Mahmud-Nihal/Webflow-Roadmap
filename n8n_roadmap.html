@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>n8n Automation Roadmap · 4 Months to Freelance Ready</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-page: #F8F9FC;
+      --card-bg: #FFFFFF;
+      --border-light: #E9EDF2;
+      --border-med: #DFE4EA;
+      --text-primary: #1A2C3E;
+      --text-secondary: #3E5A6F;
+      --text-tertiary: #6B7F8F;
+      --accent-blue: #1E6DFF;
+      --accent-blue-soft: #EFF4FF;
+      --accent-green: #1D9E75;
+      --accent-green-soft: #E1F5EE;
+      --accent-purple: #534AB7;
+      --accent-purple-soft: #EEEDFE;
+      --accent-orange: #D85A30;
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.03);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
+      --radius-card: 20px;
+      --radius-md: 12px;
+      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      --color-background-primary: #FFFFFF;
+      --color-background-secondary: #F5F7FA;
+      --color-border-tertiary: #E9EDF2;
+      --color-border-info: #1E6DFF;
+      --color-text-primary: #1A2C3E;
+      --color-text-secondary: #3E5A6F;
+      --color-text-tertiary: #6B7F8F;
+    }
+
+    body {
+      background: var(--bg-page);
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 24px 16px 64px;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .top-header {
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      position: sticky;
+      top: 12px;
+      z-index: 30;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #1A2C3E 0%, #534AB7 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      font-size: 0.8rem;
+      background: var(--bg-page);
+      padding: 6px 12px;
+      border-radius: 40px;
+    }
+
+    .stats span {
+      font-weight: 600;
+      color: var(--accent-purple);
+    }
+
+    .progress-global {
+      height: 6px;
+      background: var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0 6px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--accent-purple);
+      border-radius: 10px;
+      transition: width 0.2s ease;
+    }
+
+    .month-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 8px;
+    }
+
+    .month-btn {
+      background: transparent;
+      border: 1px solid var(--border-med);
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .month-btn.active {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+      color: white;
+      box-shadow: 0 2px 6px rgba(83,74,183,0.2);
+    }
+
+    .reset-progress {
+      background: none;
+      border: none;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .phase {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .phase.on {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Milestone banners */
+    .ms {
+      border-radius: var(--radius-card);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 28px;
+      border-left: 6px solid;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+    .ms1 { border-left-color: #1D9E75; background: var(--accent-green-soft);}
+    .ms2 { border-left-color: #185FA5; background: #E6F1FB;}
+    .ms3 { border-left-color: #534AB7; background: var(--accent-purple-soft);}
+    .ms4 { border-left-color: #BA7517; background: #FAEEDA;}
+    .ms5 { border-left-color: #5F5E5A; background: #F1EFE8;}
+
+    .mt {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .mb {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .wk {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--accent-purple);
+      background: var(--accent-purple-soft);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 40px;
+      margin-bottom: 16px;
+    }
+
+    .dc {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .dh {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      transition: background 0.1s;
+    }
+    .dh:hover {
+      background: #FCFDFF;
+    }
+    .dd {
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--bg-page);
+      padding: 4px 12px;
+      border-radius: 30px;
+      color: var(--accent-purple);
+      min-width: 85px;
+      text-align: center;
+    }
+    .dt {
+      flex: 1;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+    .da {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      transition: transform 0.2s;
+    }
+    .da.o {
+      transform: rotate(180deg);
+    }
+    .db {
+      display: none;
+      padding: 6px 18px 18px 18px;
+      border-top: 1px solid var(--border-light);
+      background: #FFFFFF;
+      border-radius: 0 0 var(--radius-card) var(--radius-card);
+    }
+    .db.o {
+      display: block;
+    }
+
+    .day-check {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+      background: white;
+      padding: 4px 10px;
+      border-radius: 50px;
+      border: 1px solid var(--border-light);
+      font-size: 0.7rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .day-check input {
+      margin: 0;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--accent-purple);
+    }
+
+    .bl {
+      margin-bottom: 18px;
+    }
+    .bh {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .tb {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+    .am {
+      background: #E6F1FB;
+      color: #0C447C;
+    }
+    .pm {
+      background: var(--accent-purple-soft);
+      color: #3C3489;
+    }
+    .btitle {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .tl {
+      list-style: none;
+      padding-left: 6px;
+    }
+    .tl li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.45;
+    }
+    .tl li::before {
+      content: "→";
+      position: absolute;
+      left: 2px;
+      color: var(--accent-purple);
+      font-size: 0.75rem;
+    }
+    .rr {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-page);
+      padding: 10px 14px;
+      border-radius: 16px;
+      margin-top: 12px;
+      font-size: 0.75rem;
+    }
+    .rt {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+    .nb {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--accent-green);
+      background: #F5F9F5;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .nb.w {
+      border-left-color: var(--accent-orange);
+      background: #FEF5F0;
+    }
+    .bdg {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .g { background: #EAF3DE; color: #27500A; }
+    .b { background: #E6F1FB; color: #0C447C; }
+    .a { background: #FAEEDA; color: #633806; }
+    .r { background: #FCEBEB; color: #791F1F; }
+    .p { background: #EEEDFE; color: #3C3489; }
+    .t { background: #E1F5EE; color: #085041; }
+
+    .card {
+      background: var(--card-bg);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-card);
+      padding: 1rem 1.25rem;
+      margin-bottom: 12px;
+    }
+    .card.hi {
+      border: 1.5px solid var(--accent-purple);
+      background: var(--accent-purple-soft);
+    }
+    .card.ok {
+      border-left: 3px solid var(--accent-green);
+    }
+    .card.warn {
+      border-left: 3px solid var(--accent-orange);
+    }
+    .ct {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .cb {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .res-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .res-row:last-child {
+      border-bottom: none;
+    }
+    .ri {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-md);
+      background: var(--color-background-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .rn {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .rd {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .pill {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: var(--color-background-secondary);
+      border: 0.5px solid var(--border-med);
+      display: inline-block;
+      margin: 3px 2px 0 0;
+    }
+
+    .ask-btn {
+      margin: 16px 0 8px;
+      background: var(--accent-purple);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      color: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .ask-btn:hover {
+      background: #3c3489;
+      transform: scale(0.98);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+    .nav-link {
+      font-size: 0.8rem;
+      color: var(--accent-purple);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 600px) {
+      .dh { flex-wrap: wrap; row-gap: 8px; }
+      .day-check { margin-left: 0; order: 3; width: 100%; justify-content: flex-end; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="top-header">
+    <div class="title-row">
+      <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <h1>⚙️ n8n Automation Roadmap<br><span style="font-size: 0.8rem; font-weight: normal;">4 months · 10am–2pm + 6pm–10pm · from zero to client-ready</span></h1>
+        <a href="full_webflow_roadmap.html" style="background: linear-gradient(135deg, #534AB7, #3C3489); color: white; padding: 8px 20px; border-radius: 40px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">🌐 Webflow Roadmap →</a>
+      </div>
+      <div class="stats">
+        📅 Progress: <span id="completedStats">0</span> / <span id="totalDaysCount">0</span> days
+        <button class="reset-progress" id="resetAllProgress">↻ reset</button>
+      </div>
+    </div>
+    <div class="progress-global"><div class="progress-fill" id="globalProgressFill"></div></div>
+    <div class="month-nav" id="monthNav">
+      <button data-phase="m1" class="month-btn active">Month 1 · Basics + APIs</button>
+      <button data-phase="m2" class="month-btn">Month 2 · Advanced + AI Agents</button>
+      <button data-phase="m3" class="month-btn">Month 3 · First Clients + Voice AI</button>
+      <button data-phase="m4" class="month-btn">Month 4 · Agency + Scale</button>
+      <button data-phase="res" class="month-btn">📚 Resources</button>
+    </div>
+  </div>
+
+  <!-- ========== MONTH 1 ========== -->
+  <div id="m1" class="phase on">
+    <div class="ms ms1"><div class="mt">Month 1 milestone — "I understand automation. I can build real workflows."</div><div class="mb">By end of month 1: you know what n8n is, you understand nodes/triggers/actions, you can connect any two apps without help, you've built 10+ real working workflows, and you understand what APIs and webhooks are at a conceptual level. You are not client-ready yet — but you have solid foundations no beginner has.</div></div>
+    <div class="wk">Week 1 — Days 1–7 — What is automation? What is n8n? Build your first 5 workflows.</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Day 1</span><span class="dt">What is n8n? Set it up. Understand the canvas.</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">What is automation? What is n8n? First look at the interface.</span></div><ul class="tl"><li>Watch: "Master n8n in 2 Hours" by Jono Catliff on YouTube (first 40 minutes only today). Link: youtube.com — search "Master n8n 2 Hours Jono Catliff". This is the best single beginner video in 2026.</li><li>Understand these 4 concepts before anything else: (1) A node = one step. (2) A workflow = a chain of nodes. (3) A trigger = what starts the workflow. (4) An action = what the workflow does.</li><li>n8n is like a flowchart that actually runs. Every box in the flowchart is a node. You connect boxes. The chain runs automatically.</li><li>Sign up at n8n.io — use the Cloud free trial (14 days free, then $20/mo starter plan). Don't self-host yet — that's month 3. Use cloud now to focus on learning, not server setup.</li></ul><div class="rr"><span class="rt">youtube.com → search "Master n8n in 2 Hours Complete Beginner Guide 2025 Jono Catliff"</span></div></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Build your first workflow: when a form is submitted → send yourself an email</span></div><ul class="tl"><li>In n8n: create new workflow. Add a "n8n Form" trigger node. Add a "Gmail" or "Send Email" action node. Connect them. Fill in the form. Watch the email arrive.</li><li>You just built your first automation. A real business can pay you $300–$500 for exactly this — a contact form that auto-emails the business owner.</li><li>Spend the rest of the evening just clicking around the canvas. Look at every node in the left panel. Don't build anything — just browse. Get curious about what each thing does.</li></ul><div class="nb">If you feel lost today, that is 100% normal. n8n looks like a lot on day 1. By day 7 it will feel like a familiar tool. Don't quit on day 1.</div></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Day 2</span><span class="dt">Triggers — what starts a workflow. The most important concept.</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">All trigger types in n8n — schedule, webhook, form, app trigger</span></div><ul class="tl"><li>Watch: n8n official docs "Triggers" page at docs.n8n.io. Read every trigger type. Takes ~45 min to read carefully.</li><li>4 trigger types you must understand: (1) Schedule trigger — runs at a time (every day at 9am). (2) Webhook trigger — runs when an external app sends data. (3) App trigger — runs when something happens in an app (new Gmail, new row in Google Sheets). (4) Manual trigger — you click a button to run it.</li><li>Watch the "Triggers in n8n" section of the Jono Catliff video (continues from day 1).</li><li>Key insight: the trigger determines the entire workflow's purpose. Master triggers = master workflow design.</li></ul></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Build 2 workflows using different triggers</span></div><ul class="tl"><li>Workflow 1 (Schedule trigger): Every day at 8am, send yourself a motivational quote. Use the Schedule trigger + HTTP Request node (fetch from quotable.io API) + Gmail node. This teaches you: schedule triggers + your first API call.</li><li>Workflow 2 (App trigger): When a new row is added to a Google Sheet → send a Telegram message to yourself with the row data. This teaches you: app triggers + working with real data from a tool.</li><li>Both workflows should be active and tested before you sleep.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Day 3</span><span class="dt">Data — how n8n passes information between nodes</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">Understanding data flow — the hardest concept for beginners</span></div><ul class="tl"><li>Watch: "Data in n8n" course on docs.n8n.io (official text course — Level 1). Read the full "Understanding the data structure" section.</li><li>n8n passes data as JSON — lists of items. Every node receives items from the previous node and outputs new items. If you understand this one concept, 80% of n8n confusion disappears.</li><li>Learn: what is an "item" in n8n, how to access data from a previous node using expressions like <code style="font-size:11px;background:var(--color-background-secondary);padding:1px 4px;border-radius:3px">{{ $json.fieldName }}</code>, how to use the "Set" node to reshape data.</li><li>YouTube: search "n8n expressions tutorial" — watch one 10–15 min video. Expressions are how you reference previous node data.</li></ul><div class="rr"><span class="rt">docs.n8n.io/courses/ → Level 1 course — "Very Quick Start" and "A Longer Introduction"</span></div></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Build a workflow that transforms data between nodes</span></div><ul class="tl"><li>Workflow: new Google Sheet row → Set node (reshape data: extract just the name and email) → send a personalized email "Hello {name}, thanks for signing up..."</li><li>The key challenge: use an expression to pull the person's name from the Google Sheet data and insert it into the email. This is your first "dynamic" workflow — the output changes based on the input.</li><li>If you get stuck on expressions, paste your question into n8n's community forum (community.n8n.io) — it's very active and helpful.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Day 3 — Critical</span><span class="dt">The 2 biggest beginner mistakes in n8n — learn these now, save 10 hours</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">Read this before building anything else</span><span class="btitle">These 2 mistakes trip up 90% of beginners. Know them on day 3.</span></div><ul class="tl"><li><strong>Mistake #1 — Set node overwrites everything:</strong> The "Set" node has two modes: "Keep Only Set" (default — DELETES all previous node data and only keeps what you define) and "Add" mode (keeps all previous data and adds new fields). Beginners use Set node to add one field, then wonder why all their Google Sheet data disappeared downstream. Rule: always switch Set node to "Add" mode unless you deliberately want to strip all other data. This single mistake wastes 2–3 hours when you first hit it.</li><li><strong>Mistake #2 — Test webhook URL vs Production webhook URL:</strong> n8n gives you TWO different webhook URLs for every webhook trigger. The "Test" URL only works while you have the workflow open in the editor and have clicked "Test step". The "Production" URL only works when the workflow is ACTIVATED (the toggle in the top right is green). If you paste the Test URL into Stripe, Typeform, or any other service, it will stop working the moment you close the editor tab. Always use the Production URL for any real integration. Always activate the workflow before going live.</li><li>Where to find them: click on the Webhook trigger node → you'll see both URLs clearly labeled "Test URL" and "Production URL". Copy the Production URL. Paste it into the external service. Activate the workflow. Done.</li></ul><div class="nb w">These two mistakes are the #1 source of "why is my webhook not working??" posts on the n8n community forum. You now know the answer before you need it.</div></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Day 4</span><span class="dt">Logic nodes — IF, Switch, Merge. Making decisions in workflows.</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">IF node, Switch node, Merge node</span></div><ul class="tl"><li>Watch remaining 40 min of the Jono Catliff video covering filters and Switch nodes.</li><li>IF node: splits the workflow into two paths — TRUE and FALSE. Example: if a form submission has "budget over $1000" → route to the premium client email. If not → route to standard email. This is like an if/else in code but visual.</li><li>Switch node: routes to multiple paths based on a value. Like a switch statement in code.</li><li>Merge node: combines two workflow paths back into one. Used when you split and need to rejoin.</li></ul></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Build a lead routing workflow with IF logic</span></div><ul class="tl"><li>Scenario: A client inquiry form has a "budget" field. If budget is over $500 → send to "premium" Google Sheet tab + email with a detailed proposal template. If budget is under $500 → send to "basic" Google Sheet tab + a different email.</li><li>This is a real workflow businesses pay $300–$500 for. You just built it. Save it — this becomes a portfolio demo later.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Day 5</span><span class="dt">Error handling — what happens when workflows break</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">Error workflows, retry logic, notifications when things fail</span></div><ul class="tl"><li>Docs: docs.n8n.io → "Error handling" section. Read fully.</li><li>This is what separates a hobbyist from a professional. Clients pay for workflows that don't silently fail. If an API goes down, your client needs to know — not find out 3 days later when they lost 200 leads.</li><li>Learn: Error trigger node (runs a separate workflow when any workflow fails), try/catch logic using the "Error Output" of nodes, sending Telegram/email alerts on failure.</li></ul></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Add error handling to your day 4 workflow</span></div><ul class="tl"><li>Create a second "error notification" workflow. Connect it to your day 4 workflow. When any node fails → send yourself a Telegram message: "Workflow failed: {workflow name} at {time}. Error: {error message}".</li><li>Test it deliberately: put a wrong API key in a node. Watch the error notification arrive. Now you know it works.</li><li>Every single client workflow you deliver from now on must have error handling. Non-negotiable.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Day 5 — Extra</span><span class="dt">Execution history & debugging — how to diagnose any broken workflow</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">The debugging skill that makes you look like an expert to clients</span></div><ul class="tl"><li>Every workflow run in n8n is logged in the Execution History. Go to any workflow → click "Executions" in the left panel. You'll see every run: success (green), failed (red), waiting (yellow). Click any failed run to see EXACTLY which node failed, what data it received, what error it threw.</li><li>How to debug systematically: (1) Click the failed execution. (2) Click the red node. (3) Read the error message — usually it says exactly what's wrong ("Invalid API key", "Field 'email' not found", "Rate limit exceeded"). (4) Fix it. (5) Use "Re-run from failed node" to re-test without triggering the whole workflow again.</li><li>Pin Data technique: click any node → click "Pin" → paste in fake test data. Now you can run just the downstream nodes without retriggering the trigger. Example: your workflow starts with a Stripe webhook, but you don't want to make a real payment every time you test. Pin fake Stripe data to the webhook node → run everything after it freely. This is the #1 time-saving technique for building faster.</li><li>When a client reports a bug: go to Executions → find the failed run around the time they reported the issue → click it → read the error → fix it → forward them the fix. This is professional client support. Takes 5 minutes when you know how.</li><li>Production monitoring habit: check your active client workflows' execution history once a week. Look for patterns — if the same node is failing repeatedly at the same time, there's a systemic issue (API down, data format changed, rate limit). Catch it before the client does.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 6–7</span><span class="dt">Week 1 project: build 5 complete workflows end to end</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm + 6pm – 10pm · BUILD BOTH DAYS</span><span class="btitle">5 workflows in 2 days — all with error handling</span></div><ul class="tl"><li>1. Contact form → save to Google Sheets + send welcome email (with IF: if they checked "urgent" → also Telegram alert)</li><li>2. New Airtable record → post a formatted message to a Slack channel</li><li>3. Scheduled: every Monday 9am → pull last week's Google Sheet data → format summary → send email report</li><li>4. RSS feed from any news site → filter only articles with keyword "AI" → send daily digest to email</li><li>5. Typeform submission → create a Trello card with the submission data + assign to a team member based on category</li><li>Every workflow: add error handling. Every workflow: test it fully (trigger it manually, check output, break it intentionally, check error alert).</li><li><strong>Bonus concept to explore on Day 7:</strong> Open the "Loop Over Items" node and "Split In Batches" node in n8n's node panel — read the tooltip for each. You don't need to use them yet, but know they exist. These handle processing lists of data (e.g., 200 email addresses one by one). The "Wait" node pauses a workflow for a set time — essential for drip email sequences. You'll build with all three in week 3.</li></ul><div class="nb w">Week 1 check: can you build a workflow that connects any two apps with basic logic, without looking at a tutorial? If yes — week 1 done. If not — redo 2–3 workflows from scratch on weekend.</div></div></div></div>
+    <div class="wk" style="margin-top:14px">Week 2 — Days 8–14 — APIs and HTTP requests. The skill that unlocks everything.</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 8–9</span><span class="dt">What is an API? HTTP requests — talking to any service on the internet</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">APIs explained for non-developers + HTTP Request node in n8n</span></div><ul class="tl"><li>Day 8: YouTube — search "What is an API — explained simply". Watch one 10-min video. Then watch "HTTP Request node n8n tutorial 2025". APIs are how any app talks to any other app. Once you understand APIs, n8n's power becomes 10x clearer.</li><li>Key concepts: GET request (fetch data), POST request (send data), authentication (API keys, Bearer tokens), JSON response format. Your CSE background means this will click fast.</li><li>Day 9: n8n docs → "HTTP Request node" page. Read fully. This one node connects n8n to any app that has an API — even if n8n doesn't have a built-in integration for it. It's the master key.</li></ul></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Connect n8n to 3 APIs using HTTP Request node</span></div><ul class="tl"><li>Day 8 evening: use HTTP Request node to call the OpenWeatherMap API (free) — get today's weather for Dhaka → send to Telegram. This is a real GET request with an API key.</li><li>Day 9 evening: use HTTP Request to POST data to a webhook.site URL (free testing tool). Then use it to call the Airtable API directly (instead of the Airtable node) — create a record via raw HTTP. This teaches you to work without pre-built nodes.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 8–9 Extra</span><span class="dt">Pagination — when APIs only give you partial data</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">Silent data loss. The API bug nobody tells beginners about.</span></div><ul class="tl"><li>Most APIs don't return all results at once. They return 100 records and say "there are 500 more — fetch the next page". If you don't handle pagination, your workflow silently processes only the first 100 records and you never know the rest exist.</li><li>Example: you build a workflow to sync 2,000 HubSpot contacts to Google Sheets. HubSpot returns 100 at a time. Without pagination, you get 100 contacts and think you got all 2,000. The client's sheet is 95% empty and they think your workflow is broken. It's not — you just didn't paginate.</li><li>n8n's built-in solution: the HTTP Request node has a "Pagination" tab. Click it, enable pagination, tell n8n where to find the "next page" cursor in the API response (usually something like <code style="font-size:11px;background:var(--color-background-secondary);padding:1px 4px;border-radius:3px">response.next_cursor</code> or <code style="font-size:11px;background:var(--color-background-secondary);padding:1px 4px;border-radius:3px">response.offset</code>). n8n will keep fetching until there are no more pages. This is a built-in feature — you don't need to write any code.</li><li>How to check if an API paginates: read its docs and look for words like "cursor", "offset", "next_page_token", "hasMore", "total_count". If any of these exist in the API response, you need pagination.</li><li>Build: use the HTTP Request node to pull ALL repositories from a GitHub user via the GitHub API (which paginates at 30 results). Enable n8n's pagination. Verify you get more than 30. This teaches you the skill in a safe environment.</li></ul><div class="nb">Every time you connect to a new API, ask yourself: "does this API paginate?" If yes, enable pagination in the HTTP Request node before building anything else. It takes 30 seconds and prevents hours of confusion.</div></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 10–11</span><span class="dt">Webhooks — building workflows that other apps can trigger</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">Webhooks in and out — the concept that makes you money</span></div><ul class="tl"><li>n8n docs → "Webhooks" section. Read fully. Watch "Webhooks n8n explained" on YouTube.</li><li>A webhook is a URL that n8n gives you. When any external app sends data to that URL, your workflow runs. Most client integrations use webhooks — Stripe payments, Typeform submissions, Shopify orders, WhatsApp messages. If you understand webhooks, you can connect n8n to almost anything.</li><li>Day 11 focus: test receiving webhooks from different apps. Use webhook.site to inspect the raw payload first, then build the n8n workflow to handle it.</li></ul></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Build 2 webhook-powered workflows</span></div><ul class="tl"><li>Workflow 1: A Typeform → webhook to n8n → save response to Google Sheets + send Slack notification. Real client use case: new customer feedback form.</li><li>Workflow 2: Simulate a Stripe payment webhook (use Stripe's test mode). When a payment is received → add customer to Airtable → send a "Thank you for your purchase" email.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 10–11 Extra</span><span class="dt">Webhook Response node — how to talk back to the sender</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">Without this node, your chatbots and interactive webhooks feel broken.</span></div><ul class="tl"><li>When n8n receives a webhook, the sender (Stripe, WhatsApp, a chatbot platform) usually waits for a response back. If n8n doesn't respond within a few seconds, the sender gets a timeout error. This makes your integration look broken even when it worked.</li><li>The "Respond to Webhook" node solves this. Add it anywhere in your workflow to immediately send a response back to the caller — before your workflow finishes all its steps. Example: WhatsApp sends a message to your n8n webhook → n8n responds "Message received, processing..." in 200ms → then n8n does all the AI processing and database writes in the background.</li><li>Use case 1 — chatbot platforms (Typebot, Chatbase, custom bots): they send a user's message and wait for the AI reply. Your workflow must use "Respond to Webhook" with the AI's answer as the response body. Otherwise the chat widget times out.</li><li>Use case 2 — payment platforms: Stripe sends a payment webhook and waits for a 200 OK response within 5 seconds. If it doesn't get one, Stripe will retry the webhook up to 3 days. Add "Respond to Webhook" at the start: respond with 200 OK immediately → then do all your database/email work after. This prevents Stripe from sending duplicate events.</li><li>Build: create a webhook that receives a text message, immediately responds "Got it, generating your answer...", then calls the OpenAI API to generate a response. This simulates a real AI chatbot webhook. You'll use this pattern in every WhatsApp/Telegram AI bot you build for clients.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 12–14</span><span class="dt">Week 2 project — build a complete lead generation system</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm + 6pm – 10pm</span><span class="btitle">3 days: build a full lead capture and management system</span></div><ul class="tl"><li>This is your first "portfolio-ready" n8n workflow. A complete CRM-lite for a small business.</li><li>What it does: (1) Person fills a contact form → webhook to n8n. (2) IF budget field is empty → send email asking for budget. IF budget filled → continue. (3) Lead data saved to Google Sheets with timestamp. (4) Duplicate check: IF email already exists in sheet → skip. (5) New lead → create Trello card in "New Leads" column. (6) Send personalized welcome email to the lead. (7) Send Telegram alert to business owner: "New lead: {name}, {email}, Budget: {budget}". (8) Error handling: if any node fails → Telegram alert.</li><li>This workflow alone is worth $400–$600 to a real client. It's a complete lead management system. Document it with screenshots. This is portfolio piece #1.</li></ul><div class="nb">End of week 2: you understand APIs, webhooks, and data flow. You've built 10+ real workflows. You could already get paid $100–$200 for a simple workflow right now. Don't. Wait. Your work is not client-quality yet. Keep building.</div></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Week 2 Extra</span><span class="dt">Credentials & security — how to handle API keys safely for clients</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">This is what separates professional freelancers from hobbyists</span></div><ul class="tl"><li>Read: n8n docs → "Credentials" section. Understand that n8n stores credentials encrypted — client API keys are never visible in plaintext in the workflow JSON.</li><li>NEVER hardcode API keys inside nodes using plain text. Always use n8n's Credentials system. Reason: if a client asks you to export the workflow as JSON and you hardcoded keys, those keys are visible in the exported file.</li><li>OAuth2 vs API Key vs Basic Auth: know the difference. OAuth2 (Google, HubSpot, LinkedIn) requires a 3-click authorization flow — you connect the account, n8n gets a token. API Key (OpenAI, Airtable) — you paste the key into the credential. Basic Auth (some legacy tools) — username + password.</li><li>For client work: always create a dedicated Google account / API key for each client. Never share your personal API keys. When a project ends, the client revokes their own keys and you still have yours.</li><li>Environment variables: for self-hosted n8n, store sensitive values (DB passwords, encryption keys) as environment variables in your server's .env file — not inside n8n workflows. Learn this before self-hosting in month 2.</li></ul><div class="nb">Security mistake that kills freelance careers: sharing a workflow JSON with a client that has hardcoded API keys inside. Their developer opens the file, sees your OpenAI key, now they have free access to your account. Always use n8n Credentials. Always.</div></div></div></div>
+    <div class="wk" style="margin-top:14px">Week 3 — Days 15–21 — Google Workspace deep dive. The most common client stack.</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 15–17</span><span class="dt">Google Sheets, Gmail, Google Drive, Google Calendar — master all 4</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">90% of SMB clients use Google Workspace. Learn it inside out.</span></div><ul class="tl"><li>Day 15: Google Sheets node completely — read, append, update, delete, lookup. Build: automated weekly report that reads Sheet data, filters rows, and emails a summary.</li><li>Day 16: Gmail node — send, read, filter, label emails. Build: email parser — when a Gmail arrives with subject "Invoice", extract data, save to Sheets, create a Trello card.</li><li>Day 17: Google Drive + Google Calendar. Build: when a new file is added to a Drive folder → extract text (if it's a doc) → save summary to Sheets → create a Calendar reminder in 3 days to review it.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 18–21</span><span class="dt">CRM automations — Airtable, Notion, HubSpot basics</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm + 6pm – 10pm · BUILD</span><span class="btitle">These are the tools clients actually use to run their businesses</span></div><ul class="tl"><li>Day 18: Airtable deep dive. Build: new Airtable record → trigger a multi-step onboarding sequence (send email series over 3 days using scheduled delays).</li><li>Day 19: Notion integration. Build: when a Notion database item is marked "Complete" → automatically move it to an archive database + send a Slack message.</li><li>Day 20: HubSpot basics. Build: new HubSpot contact → create corresponding Airtable record + send a personalized intro email + assign to a team member in Slack based on deal size.</li><li>Day 21: week 3 project — build a complete "new client onboarding" workflow: new form submission → create Airtable record → create Notion project page → schedule 3 welcome emails over 3 days → create Google Calendar meeting invite → Slack alert to team.</li></ul><div class="nb">This onboarding workflow is portfolio piece #2. It's a complete business system. Real agencies pay $800–$1,500 for exactly this.</div></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Week 3 Extra</span><span class="dt">Loop Over Items, Wait node, Split in Batches — handling bulk data</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">Most client requests involve processing lists of things. These nodes handle that.</span></div><ul class="tl"><li>Loop Over Items node: processes each item in a list one by one. Use case: you have 50 leads in a Google Sheet → Loop Over Items → send a personalized email to each one. Without this node, n8n processes all items together (which usually creates one email, not 50).</li><li>Split In Batches node: processes items in groups. Use case: you have 500 rows to process but the API only allows 10 requests per second → Split In Batches (10 per batch) + Wait node (1 second delay) = no rate limit errors.</li><li>Wait node: pauses a workflow for a specific duration. Use case: drip email sequence — send email 1 immediately, wait 2 days, send email 2, wait 3 days, send email 3. This is how you build automated follow-up sequences.</li><li>Build: Google Sheet with 10 rows of fake leads → Loop Over Items → for each row, send a personalized email using the name and email from that row. This is one of the most common things clients actually need.</li><li>Build: 3-email drip sequence. Form submission → immediate welcome email → Wait 2 days → follow-up email → Wait 3 days → final CTA email. Real email marketing agencies charge $500–$800 for building this.</li></ul></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · BUILD</span><span class="btitle">Workflow export, backup, and version control — protect your work</span></div><ul class="tl"><li>n8n lets you export any workflow as a JSON file. Do this for every workflow you build from now on. File → Download → saves the entire workflow. Store all exported JSONs in a Google Drive folder organized by client/project.</li><li>Why this matters: if your n8n instance crashes, you can re-import all workflows in 10 minutes. If a client deletes something by accident, you have a backup. If you want to copy a workflow to a client's self-hosted n8n, you import the JSON.</li><li>For month 3+ when you use Git: push workflow JSONs to a private GitHub repo. Commit message = "Client X — added error handling to lead workflow". Now you have version history. If you break something, you can roll back.</li><li>Also learn: n8n Tags feature — tag workflows by client name. When you have 30+ workflows across multiple clients, tags keep things organized.</li></ul></div></div></div>
+    <div class="wk" style="margin-top:14px">Week 4 — Days 22–30 — AI nodes. The skill that doubles your rates.</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 22–24</span><span class="dt">AI in n8n — OpenAI node, AI Agent node, basic prompting</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">n8n + OpenAI — this combination is where the money is in 2026</span></div><ul class="tl"><li>Day 22: n8n docs → "AI in n8n" section. Read fully. Then watch: n8n official YouTube "Build your first AI agent in n8n". The AI Agent node is n8n's most powerful feature — it lets an LLM (like GPT-4) decide what steps to take next in a workflow.</li><li>Day 23: Get an OpenAI API key (pay per use — starts at fractions of a cent). Connect it to n8n. Build: email auto-responder — when you receive an email, GPT reads it and drafts a reply in your writing style. You review and click send.</li><li>Day 24: Build an AI text classifier. Incoming form submissions → GPT classifies them as "sales lead", "support request", or "spam" → routes to different workflow branches based on classification. This is genuinely useful and businesses pay for it.</li></ul><div class="rr"><span class="rt">platform.openai.com → API keys → create key. n8n docs → AI nodes section.</span></div></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 22–24 Extra</span><span class="dt">AI alternatives — Claude API, Google Gemini, Mistral in n8n</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">Don't depend on only OpenAI. 3 alternatives every n8n freelancer should know.</span></div><ul class="tl"><li>Claude API (Anthropic): Often better than GPT-4 for long-document analysis, writing, and reasoning. n8n has a built-in "Anthropic" credential — connect it just like OpenAI. Get key at console.anthropic.com. Pricing is comparable to OpenAI. Use claude-sonnet for cost-performance balance, claude-opus for complex reasoning tasks.</li><li>Google Gemini: Free tier is generous. Connect via n8n's "Google Gemini" credential or via HTTP Request to the Gemini API. Best use case: when clients already use Google Workspace heavily and want AI inside that ecosystem. Also: Gemini has a 1M token context window — useful for processing very long documents.</li><li>Mistral (via API): European alternative. Some enterprise clients prefer it for data privacy compliance (GDPR). Free tier available at mistral.ai. Connect via HTTP Request node or the Mistral credential in n8n.</li><li>Why this matters for freelancing: if a client says "we can't use OpenAI for compliance reasons" — you now have 3 alternatives you can immediately offer. This flexibility is worth an extra $200–$300 on a project quote. Always ask clients: "Do you have a preferred AI provider?"</li><li>Build: recreate your Day 23 email auto-responder using Claude API instead of OpenAI. Notice the difference in output quality for your use case. This builds intuition for which model to recommend to which client.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 25–27</span><span class="dt">AI Agent node — workflows that think and decide</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">The AI Agent node is n8n's most valuable and marketable feature</span></div><ul class="tl"><li>Watch: "n8n AI Agent tutorial 2025" on YouTube — search for the most recent video (2025 or 2026). Build along exactly.</li><li>Day 25: Build a basic AI agent that can answer questions about a Google Sheet (a "talk to your data" workflow). Client use case: "I want to ask my sales spreadsheet questions in plain English."</li><li>Day 26: Build an AI agent with tools — the agent can search the web, check a calendar, and send emails based on what it decides. This is an "AI assistant" workflow. Businesses pay $1,000–$3,000 for this.</li><li>Day 27: Add memory to your AI agent. Use n8n's built-in memory buffer so the agent remembers previous conversation turns. Now it's a proper AI assistant, not just a one-shot responder.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 28–30</span><span class="dt">Month 1 final project — AI-powered lead qualification system</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm + 6pm – 10pm · BUILD</span><span class="btitle">Portfolio piece #3 — the one that shows you understand AI automation</span></div><ul class="tl"><li>Build: new lead comes in via form → AI agent reads the lead's message → classifies their intent, urgency, and budget tier → writes a personalized reply email in the business owner's tone → saves structured data to Google Sheets → creates a prioritized Trello card → sends Slack notification with AI-written summary → if urgent: sends WhatsApp message via Twilio.</li><li>This is a complete AI-powered lead qualification system. It replaces 30 minutes of manual work per lead. A business getting 20 leads/week would pay $1,200–$2,000 for this.</li><li>Document it: screen-record a 3-minute demo video of it running. This is your most important portfolio piece.</li></ul><div class="nb w">Month 1 final check: can you build a workflow with triggers, logic, APIs, error handling, and AI nodes without looking at tutorials? If yes — you are ready for month 2. If no — spend 3 more days rebuilding your week 4 project from scratch.</div></div></div></div>
+  </div>
+
+  <!-- ========== MONTH 2 ========== -->
+  <div id="m2" class="phase">
+    <div class="ms ms2"><div class="mt">Month 2 milestone — "I am an n8n Automation Specialist + AI Workflow Builder"</div><div class="mb">By end of month 2: you can build complex multi-step workflows with AI agents, you know how to connect n8n to advanced tools (WhatsApp, Telegram bots, Stripe, LinkedIn, custom APIs), you have 5 strong portfolio pieces, you understand self-hosting, and you have taken your first paid client project.</div></div>
+    <div class="wk">Week 5–6 — Days 31–44 — Advanced integrations: WhatsApp, Telegram, Stripe, LinkedIn</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 31–35</span><span class="dt">WhatsApp + Telegram automation — highest demand in 2026</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">Messaging automation is the #1 most requested n8n service from SMBs</span></div><ul class="tl"><li>Day 31–32: Telegram Bot — create a Telegram bot via BotFather (free, 5 min). Connect to n8n. Build: a business owner can message their bot "send report" → n8n pulls Google Sheets data → formats report → sends it back in Telegram. This is a real tool business owners love.</li><li>Day 33–34: WhatsApp via WhatsApp Business API or Twilio WhatsApp (Twilio has a free trial). Build: new customer order notification via WhatsApp. When a Google Form is filled → WhatsApp message to business owner AND customer.</li><li>Day 35: Combine Telegram + AI: build a chatbot where the business owner texts the Telegram bot a question → the AI agent answers using their Google Sheet as a knowledge base → replies via Telegram. This is portfolio piece #4.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 36–40</span><span class="dt">Stripe payments + e-commerce workflows</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm + 6pm – 10pm · LEARN + BUILD</span><span class="btitle">Payment automation is high-value work — clients pay premium for this</span></div><ul class="tl"><li>Day 36–37: Stripe webhook integration. When a Stripe payment succeeds → add customer to Airtable → send receipt email → create invoice in Google Sheets → send WhatsApp notification to business owner.</li><li>Day 38–39: Failed payment workflow. Stripe payment fails → email customer with retry link → if still unpaid after 3 days → create Trello task for manual follow-up → send escalation Slack alert.</li><li>Day 40: Build a complete e-commerce order management workflow: Shopify/WooCommerce order → n8n webhook → update inventory in Airtable → send confirmation to customer → create fulfillment task → schedule shipping notification. Portfolio piece #5.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 40–42 (Bonus)</span><span class="dt">LinkedIn automation — the missing skill from every n8n beginner</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">LinkedIn automation is high-demand and underserved in n8n freelancing</span></div><ul class="tl"><li>Important note: LinkedIn's official API is restricted (requires partner approval). So n8n freelancers use 2 approaches: (1) Phantombuster (phantombuster.com) — a LinkedIn scraping tool with a free tier. You trigger Phantombuster via n8n's HTTP Request node to automate LinkedIn actions. (2) Apify LinkedIn scrapers — similar concept, Apify has a generous free tier.</li><li>Day 40: Set up a Phantombuster account (free). Learn their "LinkedIn Profile Scraper" and "LinkedIn Search Export" phantoms. Build: n8n workflow → trigger Phantombuster via API → Phantombuster scrapes LinkedIn search results → results come back to n8n → save to Google Sheet + filter by criteria.</li><li>Day 41: Build a complete LinkedIn lead generation workflow: define target audience (e.g., "CEOs of e-commerce companies in Dhaka") → Phantombuster scrapes matching profiles → n8n filters for profiles that match criteria → saves to Airtable → AI node writes personalized outreach messages for each → outputs a ready-to-send message sheet. Businesses pay $800–$1,500 for this workflow.</li><li>Day 42: Build a LinkedIn post monitoring workflow: Apify scrapes posts with a specific hashtag or keyword daily → n8n filters relevant posts → AI summarizes insights → sends daily digest to Slack. Marketing agencies use this for competitor monitoring. Add to portfolio.</li><li>Important: always be transparent with clients about LinkedIn automation limitations and ToS. Professional approach: use it for data research, not for auto-sending messages at scale.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 42–44 (Bonus)</span><span class="dt">Database nodes — MySQL, PostgreSQL, Supabase direct queries</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">Enterprise clients use databases — this skill unlocks higher-paying work</span></div><ul class="tl"><li>n8n has built-in nodes for: MySQL, PostgreSQL, MariaDB, SQLite, Microsoft SQL Server, MongoDB. These connect n8n directly to a client's database — no middle layer needed.</li><li>Day 42: Set up a free PostgreSQL database on Supabase (free tier). Connect to n8n using the Postgres node. Build: form submission → INSERT into Postgres table → query the table → send summary email. This is the same workflow you've built before, but now with a real database instead of Google Sheets.</li><li>Day 43: Build a database sync workflow: new row in one PostgreSQL database → transform data → INSERT into another database. This is "data pipeline" work — companies pay $2,000–$5,000 for automated database sync systems.</li><li>Day 44: Build a scheduled database report: every Monday, query a MySQL database for last week's sales data → aggregate by category → format as HTML table → send email report to management. This is the kind of workflow that replaces a developer's recurring task.</li><li>When to use databases vs Google Sheets: use databases when (1) data volume exceeds 10,000 rows, (2) multiple systems need to write to the same data source simultaneously, (3) the client's existing system already uses a database.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 41–44</span><span class="dt">Self-hosting n8n on a VPS — essential for client work</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">Why self-hosting matters and how to do it</span></div><ul class="tl"><li>Watch: "How to self-host n8n on a VPS" on YouTube — any recent tutorial showing Docker deployment.</li><li>Why this matters for clients: (1) No usage limits. (2) Client's data stays on their server — privacy argument. (3) You can charge a setup + hosting retainer. (4) You control uptime.</li><li>Get a DigitalOcean droplet ($6/mo) or Hetzner VPS (even cheaper). Install n8n with Docker following the official docs. Point a domain to it. This is your client deployment environment.</li><li>Your CSE background makes this easier than average — you've heard of servers and Docker before.</li><li><strong>n8n execution modes — important for production:</strong> By default n8n uses "Regular" mode (one queue, one worker). For client production deployments with many workflows running simultaneously, switch to "Queue" mode — n8n uses Redis to queue jobs across multiple workers. This prevents one heavy workflow from blocking all others. Read: docs.n8n.io → "Queue mode". Don't need this for learning — but mention it to enterprise clients as a selling point for your self-hosted setup.</li><li>Also set up: basic auth or SSO on your n8n instance (never leave it open to the internet with no login), and SSL certificate via Let's Encrypt (free). Your domain must use HTTPS for webhook triggers to work with most external services.</li></ul><div class="rr"><span class="rt">docs.n8n.io → "Hosting n8n" → "Docker" → follow the official self-hosting guide</span></div></div></div></div>
+    <div class="wk" style="margin-top:14px">Week 7–8 — Days 45–60 — First clients + RAG AI systems</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 45–52</span><span class="dt">RAG AI — making AI work with a client's own data</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">RAG = Retrieval-Augmented Generation. The most in-demand AI workflow type.</span></div><ul class="tl"><li>RAG lets an AI answer questions based on a specific document library — a company's PDFs, FAQ docs, product catalogue, knowledge base. The AI doesn't just use ChatGPT's general knowledge; it uses the client's specific content.</li><li>Day 45–46: n8n docs → "AI agents with RAG" tutorial. Read and build along. You need: a vector store (use Supabase free tier or Pinecone free tier), an embedding node, a retrieval node, and the AI agent.</li><li>Day 47–50: Build a complete RAG chatbot: upload 5 PDF documents about a fake company's products → process and embed them into Supabase vector store → build a Telegram bot that answers questions about the products using only those documents. This is a "custom AI chatbot for your business" — clients pay $1,500–$3,000 for this.</li><li>Day 51–52: Add this to your Fiverr portfolio. Screen-record a 3-minute demo: you ask it a product question, it answers using only the uploaded documents. This video alone will generate inquiries.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 53–60</span><span class="dt">First paying clients + Fiverr/Upwork setup</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · CLIENT WORK</span><span class="btitle">Find and deliver first 1–2 paid projects</span></div><ul class="tl"><li>Day 53–55: Set up Fiverr gig. Title: "I will build an n8n automation workflow to automate your business". 3 packages: Basic $150 (1 simple workflow), Standard $350 (3 workflows + error handling), Premium $700 (full automation system + RAG AI + 30 days support). Add your 3 demo videos as portfolio.</li><li>Day 56–57: Upwork profile. Headline: "n8n Automation Specialist — AI Workflows, APIs, CRM Integration". Set hourly rate at $25/hr. Add all 5 portfolio pieces with screenshots and descriptions.</li><li>Day 58–60: Active client hunt. DM 10 people in your network who run small businesses. Offer to automate one process for free or $100. Deliver it perfectly. Get a review. This first review unlocks the algorithm.</li></ul></div><div class="bl"><div class="bh"><span class="tb pm">6pm – 10pm · PROPOSALS</span><span class="btitle">5 Upwork proposals every evening. Every single day.</span></div><ul class="tl"><li>Search Upwork for: "n8n", "automation", "Make.com" (people who want automation often search by any tool name), "Zapier" (offer to migrate them to n8n and save money), "workflow automation".</li><li>Every proposal: reference their specific project. Show you understood the problem. Name one specific workflow you'd build for them. Keep it to 5 sentences max.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 53–60 — Critical</span><span class="dt">How to receive international payments from Bangladesh — the practical guide</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">Set this up BEFORE you take your first client. A blocker if ignored.</span><span class="btitle">You need a way to receive USD/EUR from international clients into your BD bank account.</span></div><ul class="tl"><li><strong>Option 1 — Payoneer (recommended for beginners):</strong> Free to sign up at payoneer.com. You get a US bank account number (routing + account number). Give this to international clients or Upwork. They pay in USD → it lands in Payoneer → you withdraw to your Dutch-Bangla Bank, BRAC, or any BD bank. Processing time: 2–3 business days. Withdrawal fee: ~$3 flat or 2% (whichever is higher). Payoneer also works as your Upwork payment method directly — connect them in Upwork settings. This is what most Bangladeshi freelancers use.</li><li><strong>Option 2 — Wise (formerly TransferWise):</strong> Sign up at wise.com. You get a "borderless account" with USD, EUR, GBP account details. International clients pay into it. You convert to BDT and withdraw to your bank. Conversion rate is much better than Payoneer (closer to mid-market rate). Slight complexity: setting up for Bangladesh requires identity verification. Withdrawal to BD bank takes 1–3 days. Good for larger amounts where the better conversion rate saves meaningful money.</li><li><strong>Platform-specific:</strong> Fiverr has its own Fiverr Revenue Card (Payoneer-powered). Connect Payoneer to Fiverr and withdrawals go straight to your Payoneer account. Upwork: in payment settings, add your Payoneer account as the withdrawal method. Direct clients: give them your Payoneer USD account number and they do a standard bank transfer.</li><li><strong>Tax & regulatory note for Bangladesh:</strong> Freelance income from abroad is currently exempt from income tax in Bangladesh under the NBR freelancer incentive (verify this is still active — check the NBR website or ask a local accountant). You are required to bring the income through a proper banking channel (Payoneer/Wise → BD bank) and get a "remittance certificate" from your bank. Keep these. They're proof of legal foreign income if ever asked.</li><li><strong>Do this now, before day 53:</strong> Sign up for Payoneer during Month 1, Week 1 — it sometimes takes 3–7 days to verify your account. Don't wait until you have a client ready to pay you and discover it takes a week to set up.</li></ul><div class="nb w">This is the most practically important section in the entire roadmap for Bangladeshi freelancers. Many people build the skills, get the client, get offered payment — and then have no way to receive it. Set up Payoneer in week 1, not week 8.</div></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 53–60 — Extra</span><span class="dt">Client discovery call script — what to say to scope any project</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">A 20-minute discovery call done right turns a lead into a signed contract.</span></div><ul class="tl"><li>The discovery call has one purpose: understand their problem well enough to quote accurately. Not to sell yourself — to diagnose. Here is the exact script:</li><li><strong>Opening (2 min):</strong> "Thanks for your time. I've read your project description — before I quote anything, I want to make sure I understand the problem exactly. Can you walk me through what your current process looks like, step by step?"</li><li><strong>Problem diagnosis (8 min):</strong> Ask these 5 questions in order: (1) "What tools are you currently using?" — you need their exact stack. (2) "What triggers this process to start?" — understanding the trigger tells you which n8n trigger node to use. (3) "What data moves between steps?" — tells you complexity. (4) "What does success look like — how will you know the automation is working?" — sets the acceptance criteria. (5) "How often does this process run and how many records does it handle?" — tells you if you need loop nodes, batching, or database nodes.</li><li><strong>Volume + timeline (3 min):</strong> "What's your timeline?" and "Do you have a budget range in mind?" — if they won't give a budget, say "projects like this typically run $X to $Y depending on complexity — does that fit your budget?" This filters out time-wasters.</li><li><strong>Close (2 min):</strong> "Based on what you've described, I can build [describe workflow in 2 sentences]. I'll send you a written scope and quote within 24 hours. Does that work?" Then send the SOW within 24 hours — no exceptions.</li><li>Practice this call: find a friend, describe a fake business problem to them, and have them play client while you ask these questions. Do it twice. By the time you have a real discovery call, it feels natural.</li></ul></div></div></div>
+  </div>
+
+  <!-- ========== MONTH 3 ========== -->
+  <div id="m3" class="phase">
+    <div class="ms ms3"><div class="mt">Month 3 milestone — "I am a paid n8n freelancer with recurring clients"</div><div class="mb">By end of month 3: you are earning $300–$1,200/month, you have 3–5 reviews on Fiverr or Upwork, at least 1–2 clients are paying you monthly retainers, you can handle ANY standard business automation request without external help, and you understand voice AI automation.</div></div>
+    <div class="wk">Week 9–10 — Days 61–74 — Voice AI + multi-agent systems</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 61–67</span><span class="dt">Voice AI agents — the premium skill of 2026</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">Voice AI is the fastest-growing n8n use case. Low competition, high pay.</span></div><ul class="tl"><li>Tools: Retell AI (retellai.com) or Vapi.ai (vapi.ai) — both integrate with n8n via webhooks. These services handle the voice-to-text and text-to-voice conversion. You build the workflow logic in n8n.</li><li>Day 61–62: Watch "n8n + Retell AI voice agent tutorial" on YouTube. Build a basic voice agent: someone calls a number → AI answers → asks qualifying questions → saves answers to Google Sheet → sends summary email to business owner.</li><li>Day 63–65: Build a complete AI receptionist: appointment booking (connects to Google Calendar), FAQ answering (uses RAG from their website), and lead capture. This is worth $2,000–$4,000 to a real estate agent or medical clinic.</li><li>Day 66–67: Add this to your portfolio and Fiverr gig as a premium tier ($500–$800 package).</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 68–74</span><span class="dt">Multi-agent systems — orchestrating multiple AI agents</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">Multi-agent = multiple AI nodes working together like a team</span></div><ul class="tl"><li>A multi-agent system has: a manager agent (decides what to do), specialist agents (each does one task), and a coordinator (combines results). It's like having an AI team.</li><li>Build: a content research and creation pipeline. Agent 1 (researcher): searches the web for a topic. Agent 2 (writer): writes a blog post based on research. Agent 3 (SEO): rewrites it for SEO. Output: finished blog post saved to Notion + published to WordPress.</li><li>This is one workflow that replaces a content writer + SEO specialist. Marketing agencies pay $1,500–$3,000 for this setup.</li></ul></div></div></div>
+    <div class="wk" style="margin-top:14px">Weeks 11–12 — Days 75–90 — Retainer clients + niching down</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Days 75–90</span><span class="dt">Build retainer model + pick your niche</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · CLIENT DELIVERY + STRATEGY</span><span class="btitle">Retainers are your path to predictable income</span></div><ul class="tl"><li>After delivering any project: send a retainer proposal. "I can monitor and maintain your workflows, add new automations as you need them, and fix any issues — for $200/month." Most clients will say yes because they don't want to manage it themselves.</li><li>5 clients at $200/mo = $1,000/mo of guaranteed income before you take a single new project. This is your financial floor.</li><li>Niche selection: by month 3 you'll know which type of client you enjoyed most. Pick one and go deep: (a) Real estate agencies — lead capture + follow-up + CRM, (b) Marketing agencies — content automation + reporting + client onboarding, (c) E-commerce stores — order management + customer service + inventory, (d) SaaS companies — onboarding flows + churn prevention + support automation.</li><li>Update all profiles to reflect your niche. "n8n automation for real estate agencies" earns 40% more than "n8n automation expert" because you're solving a specific problem a specific person has.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Month 3 Extra 1</span><span class="dt">Zapier & Make.com migration — the highest-ROI service you can offer</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · STRATEGY + BUILD</span><span class="btitle">Millions of businesses pay $200–$800/mo for Zapier. You can save them money and charge for it.</span></div><ul class="tl"><li>Zapier's paid plans start at $20/mo and scale to $200–$800/mo for businesses with many workflows. n8n self-hosted costs $6/mo (VPS). Every business on expensive Zapier is a migration opportunity.</li><li>Your pitch: "I will migrate all your Zapier workflows to n8n, self-hosted on your own server. You'll save $X per month. I charge a one-time migration fee of $Y. You break even in Z months." This pitch sells itself — you're literally saving them money.</li><li>Upwork search: type "Zapier" in the search bar. Filter for "automation" projects. Many people describe their Zapier problem not knowing n8n can solve it for less. Your proposal: "I see you're looking for a Zapier solution — I can build this in n8n which will save you $X/month in tool costs."</li><li>Build a comparison doc: create a one-page PDF showing Zapier vs n8n pricing for a business with 10 workflows running 1,000 tasks/month. Zapier: $150/mo. n8n self-hosted: $6/mo server + your $100/mo management retainer = $106/mo. They save $44/mo and gain unlimited runs. This is your sales weapon.</li><li>Make.com (formerly Integromat) migration: same pitch. Make is cheaper than Zapier but has a steeper learning curve. Businesses on Make who are frustrated often switch to n8n for the visual simplicity. Search Upwork for "Make.com" automation projects.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Month 3 Extra 2</span><span class="dt">Portfolio website — your most important sales asset</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · BUILD</span><span class="btitle">A portfolio website turns inquiries into clients. Takes one day to build.</span></div><ul class="tl"><li>Use Framer (framer.com) — free tier. Best tool in 2026 for freelancer portfolio sites. No coding needed. Professional output in hours. Alternative: Notion + Super.so if you want simple and fast.</li><li>Your portfolio site needs exactly 5 things: (1) What you do in one sentence. "I build n8n automation workflows that save businesses 10+ hours per week." (2) 5 portfolio case studies with before/after — "Client had this problem. I built this workflow. Now they save X hours/week." (3) Demo videos — screen recordings of your workflows running. These are more persuasive than any text. (4) Your rates — be transparent. Removes unqualified leads. (5) Contact form or Calendly link.</li><li>For your portfolio case studies: you don't need real clients yet. Use your training workflows as "demo projects." Frame them as: "Lead qualification system — built for a hypothetical real estate agency. Handles 50 leads/day. Saves 2 hours of manual work daily."</li><li>Add your portfolio URL to: Fiverr bio, Upwork profile, LinkedIn, email signature. When clients Google you, this is what they find. Make it professional.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Month 3 Extra 3</span><span class="dt">Bangladesh market + local clients — the untapped opportunity</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · STRATEGY</span><span class="btitle">Dhaka has 400+ growing startups. Most have zero automation. You're early.</span></div><ul class="tl"><li>Local client opportunity: most Dhaka-based SMBs, e-commerce shops (Chaldal, Shajgoj type businesses), and agencies have manual workflows that cost them hours weekly. They don't know n8n exists. You're not competing with 1,000 other n8n freelancers locally — you might be one of 10.</li><li>bKash / Nagad integration: many local businesses want automation around their payment notifications. bKash sends payment confirmation SMSes/webhooks — build a workflow that catches bKash payment notifications → updates order status in Airtable → sends WhatsApp confirmation to customer. This is a genuinely high-demand local workflow.</li><li>Local freelance communities to join: "Bangladesh Freelancer" Facebook groups (500k+ members), "Upwork Bangladesh Community" Facebook group, LinkedIn Bangladesh tech community. Post your workflow demos here — local clients will reach out.</li><li>Pricing for local clients: charge 30–40% less than your international rates. Local businesses can't always pay $500 for a workflow. Start at ৳8,000–৳20,000 per project ($70–$180 USD). But your international rates should be full price — never discount for international clients just because you're based in Bangladesh.</li><li>Local platforms to list services: Kormo Jobs (for tech freelancers), local Facebook marketplace posts, direct cold outreach to e-commerce shops via their website contact forms. Template: "Hi, I noticed your store handles orders manually. I can build an automation system that processes orders, sends confirmations, and updates inventory automatically. 15-minute call?"</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Month 3 Extra 4</span><span class="dt">Client contracts & scope of work — protecting yourself legally</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN</span><span class="btitle">One bad client can waste weeks of your time. A simple contract prevents this.</span></div><ul class="tl"><li>Every project over $200 needs a written scope of work (SOW). Not a formal legal document — just a clear description of exactly what you will build, what you will not build, and what the client must provide.</li><li>Your SOW template should include: (1) What you'll build — specific workflow description. (2) Deliverables — "3 n8n workflows, documented, with error handling, deployed to your VPS." (3) What client provides — API keys, tool access, test data. (4) Revisions — "2 rounds of revisions included. Additional revisions at $X/hr." (5) Timeline — "Delivery in 7 business days from receipt of all access." (6) Payment terms — "50% upfront, 50% on delivery." (7) Scope creep clause — "Additional features not in this SOW are billed separately."</li><li>Download a free freelance contract template from Bonsai (hellobonsai.com — free tier) or AND.CO. Customize it for n8n work. Send it via DocuSign (free for small volume) before starting any project.</li><li>The 50% upfront rule is non-negotiable. Any client who refuses to pay 50% upfront is a red flag — they're either not serious or planning to dispute the final payment. Walk away from those clients. Your time is worth more than the project.</li><li>Platforms handle contracts for you: Fiverr has its own payment protection. Upwork escrow protects both sides. For direct clients (outside platforms), use your own contract. Never start work before money is in escrow or your account.</li></ul></div></div></div>
+  </div>
+
+  <!-- ========== MONTH 4 ========== -->
+  <div id="m4" class="phase">
+    <div class="ms ms4"><div class="mt">Month 4 milestone — "I run an automation freelance business. Agency path is clear."</div><div class="mb">By end of month 4: earning $1,000–$3,000/month, 5+ recurring retainer clients, charging $800–$2,500 per project, capable of building any enterprise-level automation, and actively building toward a 2–3 person agency.</div></div>
+    <div class="wk">Month 4 — advanced skills + scaling</div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Week 13–14</span><span class="dt">MCP integration, advanced AI, custom code nodes</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · LEARN + BUILD</span><span class="btitle">The skills that put you in the top 5% of n8n freelancers</span></div><ul class="tl"><li>MCP (Model Context Protocol): n8n added MCP server support in 2025. This lets your AI agents connect to external AI tools like Claude, Cursor, and other MCP-compatible tools. Watch: "n8n MCP server tutorial" on YouTube.</li><li>Custom code nodes: n8n has a Code node that runs JavaScript. With your CSE background, this is easy. Use it for: complex data transformations, custom API response parsing, calculations. You don't need to love coding — you just need to use it when the visual nodes can't do something.</li><li>Sub-workflows: call one workflow from inside another. This is how you build scalable, maintainable automation systems instead of one massive workflow. Best practice for all client work.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Week 13–14 Extra</span><span class="dt">QA & testing before client delivery — every time, no exceptions</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · PROCESS</span><span class="btitle">Professional freelancers test systematically. This is your QA checklist.</span></div><ul class="tl"><li>Before delivering any workflow to a client, run through this checklist: (1) Happy path — does it work correctly with normal input? (2) Empty fields — what happens if an optional field is blank? (3) Special characters — names with apostrophes (O'Brien), emojis, Arabic text. (4) Large volume — if the client sends 100 form submissions at once, does it handle all of them? (5) Duplicate detection — if the same email submits twice, is it handled? (6) API downtime — disconnect your internet mid-run. Does error handling fire? (7) Rate limits — does the workflow respect API rate limits under heavy load?</li><li>Use n8n's "Pin Data" feature during testing: pin fake test data to a trigger node so you can re-run the downstream nodes without needing to trigger the workflow externally. This cuts testing time by 70%.</li><li>Test with realistic data, not "Test Test test@test.com". Use names like "Rahim Uddin", emails like "rahim@realbusiness.com.bd", amounts like "৳12,500" — realistic data catches real formatting bugs that "test" data misses.</li><li>Keep a testing log for each client project: a simple Google Doc with "Test date | Test case | Result | Fixed". When the client asks "did you test the edge case where budget is empty?" — you can say yes and show them the log. This is what professional delivery looks like.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Week 13–14 Extra 2</span><span class="dt">Workflow documentation — how to hand over to clients professionally</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · PROCESS</span><span class="btitle">Great documentation = repeat business + referrals. Bad documentation = support tickets forever.</span></div><ul class="tl"><li>Every client delivery must include a handover document. Not a 40-page manual — a clear 2–4 page Notion page or Google Doc with: (1) What the workflow does (plain English, one paragraph). (2) How to trigger it (if manual). (3) What to do if it fails — "If you get a Telegram alert saying the workflow failed, forward it to me and I'll fix it within 24 hours." (4) API keys used and where they're stored. (5) Monthly cost breakdown (API calls, server costs). (6) Contact for support.</li><li>In n8n itself: use the "Sticky Note" nodes (the yellow post-it notes on the canvas) to annotate each section of complex workflows. "This IF node splits VIP vs regular customers." "This HTTP node calls the bKash payment API — do not change the endpoint." Future-you and the client both benefit.</li><li>Record a handover video: 5-minute Loom recording where you walk through the workflow on screen, explain each node's purpose, and show a live test run. Upload to YouTube (unlisted) and share the link. Clients love this — they watch it 3 times and never message you with basic questions again.</li><li>Documentation is also a revenue opportunity: charge a "documentation package" add-on ($50–$100) for clients who want especially thorough docs. Most will say yes.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Week 13–14 Extra 3</span><span class="dt">Production uptime monitoring — know before your client does</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · SETUP</span><span class="btitle">Your client's automation goes down at 3am. Do you find out now, or Monday morning?</span></div><ul class="tl"><li>UptimeRobot (uptimerobot.com) — free tier monitors 50 URLs every 5 minutes and alerts you via email/Telegram if any go down. Set it up for every client VPS and every public webhook URL you deploy. Takes 10 minutes. Completely free. This single tool has saved countless client relationships.</li><li>What to monitor: (1) Your n8n instance URL (e.g., n8n.yourclientdomain.com) — if this is down, all their workflows are dead. (2) Any public-facing webhook URLs that external services call. (3) The client's own website/app if your workflows depend on it.</li><li>When an alert fires at 3am: you don't need to fix it at 3am. But you do need to message the client proactively at 8am: "I noticed your automation server had a brief outage last night — it's back up and all workflows are running. I've already checked the execution logs and no data was lost." This message, sent before they notice anything is wrong, makes you look like a superhero. Clients pay retainer fees for this kind of proactive monitoring.</li><li>Add UptimeRobot monitoring as a line item in your retainer proposal: "Includes 24/7 uptime monitoring with proactive alerts — $50/month add-on." Most clients will pay this because they don't want to think about it.</li><li>For n8n specifically: also monitor the n8n health endpoint (n8n has a /healthz endpoint built in). This gives you more detailed health data than a simple ping — it confirms the n8n application is actually running, not just that the server is online.</li></ul></div></div></div>
+    <div class="dc"><div class="dh" onclick="tog(this)"><span class="dd">Week 15–16</span><span class="dt">Agency systems — templates, pricing, hiring junior</span><span class="da">▼</span></div><div class="db"><div class="bl"><div class="bh"><span class="tb am">10am – 2pm · SCALE</span><span class="btitle">Build repeatable systems so you can handle more clients</span></div><ul class="tl"><li>Build a master n8n workflow template library: 10–15 ready-to-deploy workflows for the most common client requests. Each project starts from a template, not from scratch. Saves 3–5 hours per project.</li><li>Client onboarding system: Tally.so form → client fills in their tools, goals, integrations needed → n8n automatically creates a project Notion page + Trello board + sends them a kickoff email with timeline.</li><li>Hire 1 junior: post in Bangladesh Facebook freelance groups. "Looking for junior n8n developer. Must know basic n8n. Will train. $5–$8/hr." They handle simple workflows. You handle complex AI systems and client communication.</li><li>Raise rates: Basic project $400, Standard $800, Premium $1,800. Retainer: $250/mo per client. With a junior you can serve 2x as many clients.</li></ul></div></div></div>
+  </div>
+
+  <!-- ========== RESOURCES ========== -->
+  <div id="res" class="phase">
+    <div class="card hi"><div class="ct">Complete resource list — in order of use</div><div class="cb">Everything you need. Nothing you don't. Use these in the exact order shown.</div></div>
+    <div class="card"><div class="bdg g">Free — use from day 1</div>
+      <div class="res-row"><div class="ri">n8n</div><div><div class="rn">n8n official docs — docs.n8n.io</div><div class="rd">Your primary textbook. The Level 1 and Level 2 text courses are free and excellent. Bookmark docs.n8n.io/courses/ and do both courses in month 1.</div><div><span class="pill">Free</span><span class="pill">Month 1 primary</span></div></div></div>
+      <div class="res-row"><div class="ri">YT</div><div><div class="rn">"Master n8n in 2 Hours" — Jono Catliff on YouTube</div><div class="rd">The best single beginner video in 2026. Watch on day 1. Covers triggers, actions, variables, filters, switch, AI agents, webhooks, RAG. Everything you need for month 1.</div><div><span class="pill">Free</span><span class="pill">Day 1 start here</span></div></div></div>
+      <div class="res-row"><div class="ri">YT</div><div><div class="rn">"Ultimate n8n Course: Beginner to Pro in 17 Hours" — YouTube</div><div class="rd">Free 17-hour deep-dive. Use from week 2 onward when you want to go deeper on specific topics. Search the exact title on YouTube.</div><div><span class="pill">Free</span><span class="pill">Month 1–2</span></div></div></div>
+      <div class="res-row"><div class="ri">COM</div><div><div class="rn">n8n Community — community.n8n.io</div><div class="rd">When you get stuck, this is your first stop. 200,000+ members. Search your error message — someone has already solved it. Post questions if needed — usually answered within hours.</div><div><span class="pill">Free</span><span class="pill">Daily resource</span></div></div></div>
+      <div class="res-row"><div class="ri">TPL</div><div><div class="rn">n8n template library — n8n.io/workflows</div><div class="rd">600+ free community templates. Browse this for inspiration. When you find a workflow close to what a client needs, start from the template and customize. This cuts build time in half.</div><div><span class="pill">Free</span><span class="pill">Daily use</span></div></div></div>
+      <div class="res-row"><div class="ri">GL</div><div><div class="rn">Great Learning free n8n course — mygreatlearning.com</div><div class="rd">Structured free course covering n8n from fundamentals to AI agents. Good supplement to the YouTube videos. Do this in week 3–4 of month 1.</div><div><span class="pill">Free</span><span class="pill">Week 3–4</span></div></div></div>
+      <div class="res-row"><div class="ri">AI</div><div><div class="rn">Anthropic Claude API — console.anthropic.com</div><div class="rd">Claude is often better than GPT-4 for writing, analysis, and long documents. n8n has a built-in Anthropic credential. Get your key at console.anthropic.com. Use claude-sonnet for balanced cost/quality. Essential alternative to OpenAI for client projects with compliance needs.</div><div><span class="pill">Free tier</span><span class="pill">Month 1–2</span></div></div></div>
+      <div class="res-row"><div class="ri">GH</div><div><div class="rn">GitHub — free private repos for workflow backup</div><div class="rd">Export n8n workflows as JSON and commit them to a private GitHub repo. Free unlimited private repos. This is your version control and backup system. One repo per client. Commit after every significant change.</div><div><span class="pill">Free</span><span class="pill">Month 2+</span></div></div></div>
+      <div class="res-row"><div class="ri">PH</div><div><div class="rn">Phantombuster — phantombuster.com</div><div class="rd">LinkedIn automation tool that integrates with n8n via HTTP Request. Free tier available. Essential for building LinkedIn lead generation workflows for clients in sales and recruiting.</div><div><span class="pill">Free tier</span><span class="pill">Month 2–3</span></div></div></div>
+      <div class="res-row"><div class="ri">BD</div><div><div class="rn">Bangladesh Freelancer Facebook Group + Upwork Bangladesh Community</div><div class="rd">500k+ member Facebook group for Bangladeshi freelancers. Post your n8n workflow demos here monthly. Also join LinkedIn's "Freelancers of Bangladesh" group. Local clients and referrals come from these communities. You're early to n8n in Bangladesh — use that advantage.</div><div><span class="pill">Free</span><span class="pill">Month 3+</span></div></div></div>
+    </div>
+    <div class="card"><div class="bdg a">Paid — buy when you start earning ($15–$20 each)</div>
+      <div class="res-row"><div class="ri">UD</div><div><div class="rn">Udemy — "n8n AI Agents, AI Automations & AI Voice Agents" course</div><div class="rd">Best Udemy course for freelancing specifically. Covers voice agents, RAG, multi-agent systems, and the agency business model. Buy during a Udemy sale ($13–$15). Use in month 2.</div><div><span class="pill">$13–15 on sale</span><span class="pill">Month 2</span></div></div></div>
+      <div class="res-row"><div class="ri">UD</div><div><div class="rn">Udemy — "Master n8n AI Agents: Build & Sell AI Agents"</div><div class="rd">Covers lead generation automation, voice AI, RAG with vector databases, and the agency/selling model. Good for month 2–3 when you're building client-ready systems.</div><div><span class="pill">$13–15 on sale</span><span class="pill">Month 2–3</span></div></div></div>
+    </div>
+    <div class="card"><div class="bdg b">Tool costs — what you'll actually pay monthly</div>
+      <div class="res-row"><div class="ri">n8n</div><div><div class="rn">n8n Cloud — Starter plan</div><div class="rd">$20/mo. Use this for months 1–2 while learning. Switch to self-hosted VPS ($6/mo on Hetzner or DigitalOcean) from month 3 when you have clients — saves money and gives you more control.</div><div><span class="pill">$20/mo learning</span><span class="pill">→ $6/mo self-hosted</span></div></div></div>
+      <div class="res-row"><div class="ri">AI</div><div><div class="rn">OpenAI API — pay per use</div><div class="rd">For AI workflow nodes. Starts essentially free — GPT-4o-mini costs fractions of a cent per request. For learning and demo workflows, $5 will last months. Pass API costs to clients for production workflows.</div><div><span class="pill">~$5–10/mo learning</span><span class="pill">Client pays in prod</span></div></div></div>
+      <div class="res-row"><div class="ri">SUP</div><div><div class="rn">Supabase — free tier</div><div class="rd">For vector storage in RAG workflows. Free tier is generous enough for learning and small client projects.</div><div><span class="pill">Free</span></div></div></div>
+      <div class="res-row"><div class="ri">BON</div><div><div class="rn">Bonsai freelance contracts — hellobonsai.com</div><div class="rd">Free freelance contract and SOW templates specifically for digital service providers. Use the free tier for your first 3 contracts. Customize the template for n8n automation work. Send via their built-in e-signature. Essential from your first paid project onward.</div><div><span class="pill">Free tier</span><span class="pill">Month 2+</span></div></div></div>
+      <div class="res-row"><div class="ri">TOT</div><div><div class="rn">Total monthly cost (month 1–2)</div><div class="rd">n8n Cloud $20 + OpenAI $5–10 = $25–30/mo total. From month 3 onward: VPS $6 + OpenAI $10 = $16/mo. Pass client API costs to clients on all production work.</div><div><span class="pill">$25–30/mo learning</span><span class="pill">→ $16/mo after</span></div></div></div>
+      <div class="res-row"><div class="ri">PAY</div><div><div class="rn">Payoneer — payoneer.com (set up in Week 1)</div><div class="rd">How you receive international payments into your Bangladesh bank account. Free to sign up — you get a US bank account number. Upwork and Fiverr connect directly to Payoneer. Withdraw to any BD bank (BRAC, DBBL, etc.) in 2–3 days. Set this up in Week 1 — verification takes up to 7 days. Do not wait until you have a paying client.</div><div><span class="pill">Free account</span><span class="pill">Set up WEEK 1</span><span class="pill">BD freelancer essential</span></div></div></div>
+      <div class="res-row"><div class="ri">WSE</div><div><div class="rn">Wise — wise.com (better rates for larger amounts)</div><div class="rd">Alternative to Payoneer with better USD→BDT conversion rates (closer to mid-market). Good when you're earning $500+/month and the better rate saves meaningful money. Takes longer to verify than Payoneer. Use Payoneer first, add Wise in month 3.</div><div><span class="pill">Free account</span><span class="pill">Month 3+</span></div></div></div>
+      <div class="res-row"><div class="ri">UPT</div><div><div class="rn">UptimeRobot — uptimerobot.com</div><div class="rd">Free uptime monitoring for all your client VPS instances and webhooks. 50 monitors, checks every 5 minutes, alerts via email or Telegram. Set up for every client deployment. Lets you fix issues before clients notice them — the single most professional habit you can build.</div><div><span class="pill">Free</span><span class="pill">Month 2+</span></div></div></div>
+    </div>
+    <div class="card warn"><div class="cb"><strong>The one rule that matters most:</strong> Every single day, build something. Not watch. Not read. Build. n8n is learned by doing, not by studying. A person who builds 3 bad workflows learns more than a person who watches 10 tutorials. Start building on day 1 and never stop.</div></div>
+  </div>
+
+  <div class="nav-links">
+    <a href="full_webflow_roadmap.html" class="nav-link">🌐 Back to Webflow Roadmap</a>
+    <a href="#" class="nav-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a>
+  </div>
+  <footer>📌 Click any day to expand. Tick checkboxes → tracks progress. All days and resources included. Stay consistent — build every day.</footer>
+</div>
+
+<script>
+  // Toggle day details
+  function tog(head) {
+    const body = head.nextElementSibling;
+    const arrow = head.querySelector('.da');
+    if (body) body.classList.toggle('o');
+    if (arrow) arrow.classList.toggle('o');
+  }
+
+  // Phase navigation
+  function switchPhase(phaseId) {
+    document.querySelectorAll('.phase').forEach(p => p.classList.remove('on'));
+    document.getElementById(phaseId).classList.add('on');
+    document.querySelectorAll('.month-btn').forEach(btn => {
+      if (btn.getAttribute('data-phase') === phaseId) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+  }
+
+  document.querySelectorAll('.month-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchPhase(btn.getAttribute('data-phase')));
+  });
+
+  // Progress tracking (localStorage checkboxes)
+  function initCheckboxes() {
+    const allCards = document.querySelectorAll('.dc');
+    allCards.forEach(card => {
+      const head = card.querySelector('.dh');
+      if (head && !card.querySelector('.day-check')) {
+        const checkDiv = document.createElement('div');
+        checkDiv.className = 'day-check';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        const dayText = head.querySelector('.dd')?.innerText.trim() || '';
+        const id = dayText.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
+        if (id && localStorage.getItem(`n8n_day_${id}`) === 'true') cb.checked = true;
+        cb.addEventListener('change', (e) => {
+          e.stopPropagation();
+          if (id) localStorage.setItem(`n8n_day_${id}`, cb.checked);
+          updateGlobalProgress();
+        });
+        checkDiv.appendChild(cb);
+        const labelSpan = document.createElement('span');
+        labelSpan.innerText = 'done';
+        checkDiv.appendChild(labelSpan);
+        head.appendChild(checkDiv);
+      }
+    });
+    updateGlobalProgress();
+  }
+
+  function updateGlobalProgress() {
+    const allCards = document.querySelectorAll('.dc');
+    let total = allCards.length;
+    let completed = 0;
+    allCards.forEach(card => {
+      const cb = card.querySelector('.day-check input');
+      if (cb && cb.checked) completed++;
+    });
+    document.getElementById('completedStats').innerText = completed;
+    document.getElementById('totalDaysCount').innerText = total;
+    const percent = total ? (completed / total) * 100 : 0;
+    document.getElementById('globalProgressFill').style.width = percent + '%';
+  }
+
+  function resetAllProgress() {
+    if (confirm('Reset all completed days? This cannot be undone.')) {
+      localStorage.clear();
+      document.querySelectorAll('.day-check input').forEach(cb => cb.checked = false);
+      updateGlobalProgress();
+    }
+  }
+
+  document.getElementById('resetAllProgress').addEventListener('click', resetAllProgress);
+  document.addEventListener('DOMContentLoaded', () => initCheckboxes());
+</script>
+</body>
+</html>
