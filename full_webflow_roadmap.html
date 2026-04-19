@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Webflow Freelance Roadmap · Full 6 Months (All Days Visible)</title>
+  <style>
+    .fixed-income-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(29,158,117,0.4);
+}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-page: #F8F9FC;
+      --card-bg: #FFFFFF;
+      --border-light: #E9EDF2;
+      --border-med: #DFE4EA;
+      --text-primary: #1A2C3E;
+      --text-secondary: #3E5A6F;
+      --text-tertiary: #6B7F8F;
+      --accent-blue: #1E6DFF;
+      --accent-blue-soft: #EFF4FF;
+      --accent-green: #1D9E75;
+      --accent-green-soft: #E1F5EE;
+      --accent-purple: #534AB7;
+      --accent-purple-soft: #EEEDFE;
+      --accent-gold: #BA7517;
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.03);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--bg-page);
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 24px 16px 64px;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .top-header {
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      position: sticky;
+      top: 12px;
+      z-index: 30;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    
+
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #1A2C3E 0%, #1E6DFF 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      font-size: 0.8rem;
+      background: var(--bg-page);
+      padding: 6px 12px;
+      border-radius: 40px;
+    }
+
+    .stats span {
+      font-weight: 600;
+      color: var(--accent-blue);
+    }
+
+    .progress-global {
+      height: 6px;
+      background: var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0 6px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--accent-blue);
+      border-radius: 10px;
+      transition: width 0.2s ease;
+    }
+
+    .month-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 8px;
+    }
+
+    .month-btn {
+      background: transparent;
+      border: 1px solid var(--border-med);
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .month-btn:hover {
+      background: var(--accent-blue-soft);
+      border-color: var(--accent-blue);
+    }
+
+    .reset-progress {
+      background: none;
+      border: none;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    /* all months are always visible */
+    .month-section {
+      scroll-margin-top: 100px;
+      margin-bottom: 48px;
+      border-top: 2px solid var(--border-med);
+      padding-top: 24px;
+    }
+    .month-section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .milestone-banner {
+      border-radius: var(--radius-card);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 28px;
+      border-left: 6px solid;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+    .mb-m1 { border-left-color: #1D9E75; background: var(--accent-green-soft);}
+    .mb-m2 { border-left-color: #185FA5; background: #E6F1FB;}
+    .mb-m3 { border-left-color: #534AB7; background: var(--accent-purple-soft);}
+    .mb-m4 { border-left-color: #BA7517; background: #FAEEDA;}
+    .mb-m5 { border-left-color: #993C1D; background: #FAECE7;}
+    .mb-m6 { border-left-color: #5F5E5A; background: #F1EFE8;}
+
+    .ms-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .ms-body {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .week-section {
+      margin-bottom: 32px;
+    }
+    .week-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--accent-blue);
+      background: var(--accent-blue-soft);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 40px;
+      margin-bottom: 16px;
+    }
+
+    .day-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s;
+    }
+
+    .dc-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      transition: background 0.1s;
+    }
+    .dc-head:hover {
+      background: #FCFDFF;
+    }
+    .dc-day {
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--bg-page);
+      padding: 4px 12px;
+      border-radius: 30px;
+      color: var(--accent-blue);
+      min-width: 85px;
+      text-align: center;
+    }
+    .dc-topic {
+      flex: 1;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+    .dc-arrow {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      transition: transform 0.2s;
+    }
+    .dc-arrow.open {
+      transform: rotate(180deg);
+    }
+    .dc-body {
+      display: none;
+      padding: 6px 18px 18px 18px;
+      border-top: 1px solid var(--border-light);
+      background: #FFFFFF;
+      border-radius: 0 0 var(--radius-card) var(--radius-card);
+    }
+    .dc-body.open {
+      display: block;
+    }
+
+    .day-check {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+      background: white;
+      padding: 4px 10px;
+      border-radius: 50px;
+      border: 1px solid var(--border-light);
+      font-size: 0.7rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .day-check input {
+      margin: 0;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--accent-blue);
+    }
+
+    .block {
+      margin-top: 18px;
+    }
+    .block-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .time-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+    .am {
+      background: #E6F1FB;
+      color: #0C447C;
+    }
+    .pm {
+      background: var(--accent-purple-soft);
+      color: #3C3489;
+    }
+    .block-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .task-list {
+      list-style: none;
+      padding-left: 6px;
+    }
+    .task-list li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.45;
+    }
+    .task-list li::before {
+      content: "→";
+      position: absolute;
+      left: 2px;
+      color: var(--accent-blue);
+      font-size: 0.75rem;
+    }
+    .resource-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-page);
+      padding: 10px 14px;
+      border-radius: 16px;
+      margin-top: 12px;
+      font-size: 0.75rem;
+    }
+    .note-box {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--accent-green);
+      background: #F5F9F5;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .note-box.warn {
+      border-left-color: #D85A30;
+      background: #FEF5F0;
+    }
+    .ask-btn {
+      margin: 24px 0 8px;
+      background: var(--accent-blue);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      color: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .ask-btn:hover {
+      background: #0f5ad8;
+      transform: scale(0.98);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 16px 12px 48px; }
+      .dc-head { flex-wrap: wrap; row-gap: 8px; }
+      .day-check { margin-left: 0; order: 3; width: 100%; justify-content: flex-end; }
+    }
+    
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="top-header">
+    <div class="title-row">
+      <h1>⚡ Webflow Freelance Roadmap<br><span style="font-size: 0.8rem; font-weight: normal;">6 months · 10am–2pm + 6pm–10pm (all days visible)</span></h1>
+      <div class="stats">
+        📅 Progress: <span id="completedStats">0</span> / <span id="totalDaysCount">180</span> days
+        <button class="reset-progress" id="resetAllProgress">↻ reset</button>
+      </div>
+    </div>
+    <div class="progress-global"><div class="progress-fill" id="globalProgressFill"></div></div>
+    <div class="month-nav">
+      <button class="month-btn" data-month="m1">Month 1 · Core</button>
+      <button class="month-btn" data-month="m2">Month 2 · Relume + Figma</button>
+      <button class="month-btn" data-month="m3">Month 3 · Portfolio + Clients</button>
+      <button class="month-btn" data-month="m4">Month 4 · Framer + Spline 3D</button>
+      <button class="month-btn" data-month="m5">Month 5 · GSAP + Fiverr</button>
+      <button class="month-btn" data-month="m6">Month 6 · Agency mode</button>
+    </div>
+  </div>
+
+  <!-- ======================== MONTH 1 ======================== -->
+  <div id="m1" class="month-section">
+    <div class="milestone-banner mb-m1 ms-m1"><div class="ms-title">Month 1 milestone — "I am a Webflow Developer"</div><div class="ms-body">By end of this month you can say: I understand HTML/CSS logic visually, I can build any responsive multi-page site from scratch, I understand CMS collections, and I can add scroll-triggered animations. You are not fast yet. You are not polished yet. But you can build.</div></div>
+    <div class="week-section"><div class="week-label">Week 1 — Days 1–7 — HTML/CSS visual logic. The hardest week of the entire journey.</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 1</span><span class="dc-topic">What is Webflow? Divs, classes, the box model</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — "Webflow 101 Crash Course" Part 1</span></div><ul class="task-list"><li>Go to university.webflow.com. Find "Webflow 101 Crash Course" playlist.</li><li>Watch: "Intro to HTML & CSS", "Div blocks and classes", "The box model". Pause every 2–3 minutes and write what you learned in a notebook.</li><li>One rule: if you don't understand something, rewind and rewatch. Never move forward confused.</li></ul><div class="resource-row"><span class="res-icon">→</span><span class="res-text">university.webflow.com → "Webflow 101 Crash Course"</span></div></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Recreate exactly what you watched. From zero.</span></div><ul class="task-list"><li>Open Webflow. Create a new blank project.</li><li>Build what was shown in today's videos without looking at them. If stuck — look back, fix it, close the video again.</li><li>Goal: one div structure with a heading, paragraph, and a button. Styled with a class. Responsive on mobile.</li></ul><div class="note-box">It will look terrible. That is correct. Your job today is to understand the concept, not make something beautiful.</div></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 2</span><span class="dc-topic">Flexbox — how modern layouts are built</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — Flexbox lessons</span></div><ul class="task-list"><li>Watch all flexbox videos in the 101 course. Flexbox is how almost every Webflow layout works. This is critical.</li><li>Concepts to nail: flex direction, justify content, align items, flex wrap, gap. Write each one down with a drawing of what it does.</li><li>Also watch: "Nested divs" lesson.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build a 3-column card layout using only flexbox</span></div><ul class="task-list"><li>Three cards side by side on desktop. Stacked vertically on mobile. No template, no copying — just what you watched today.</li><li>Each card has: an image placeholder (colored div), a title, short text, a button.</li><li>Spend the full 4 hours. Go slowly. Fix every alignment issue.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 3</span><span class="dc-topic">CSS Grid + spacing system (padding, margin)</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — Grid + spacing videos</span></div><ul class="task-list"><li>Watch: "CSS Grid in Webflow", "Spacing and sizing". Also watch the "Typography" video — font size, line height, font weight.</li><li>Key insight for grid: when to use flexbox vs grid. Grid = 2D layouts (rows AND columns). Flexbox = 1D (one direction).</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Rebuild yesterday's card layout using Grid instead of Flexbox</span></div><ul class="task-list"><li>Same 3-card layout but built with CSS Grid this time. Understand the difference by feeling it.</li><li>Then add: a proper heading above the cards with good spacing. Use the spacing concepts from today's lesson.</li><li>Add proper typography — different font sizes for heading vs body text. Use Google Fonts — import one font.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 4</span><span class="dc-topic">Navbar + hero section — the most common things you'll build</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — Navbar and symbols/components</span></div><ul class="task-list"><li>Watch: "Navigation bars in Webflow", "Webflow components (symbols)".</li><li>A navbar is on every site you'll ever build. Learn it thoroughly. Hamburger menu on mobile, dropdown links, logo placement.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build a full hero section with navbar</span></div><ul class="task-list"><li>Navbar: logo placeholder (text), 3 nav links, a CTA button. Must collapse to hamburger on mobile.</li><li>Hero section: big headline (try 72px+), subheadline, two buttons (primary + secondary style), a background color or image placeholder.</li><li>This single combination — navbar + hero — appears in 100% of client projects. Know it cold.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 5</span><span class="dc-topic">Responsive design — breakpoints, mobile-first</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — full responsive design series</span></div><ul class="task-list"><li>Watch every video in the "Responsive design" section. All of them.</li><li>Understand: changes flow DOWN breakpoints (desktop → tablet → mobile). Never UP. This trips every beginner.</li><li>Learn: min-width, max-width, auto sizing, overflow hidden.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Make your day 4 hero + navbar fully responsive</span></div><ul class="task-list"><li>Open your day 4 project. Switch to tablet view. Fix everything that breaks. Then mobile landscape. Then mobile portrait.</li><li>Nothing should overflow. Text should be readable. Buttons should be tappable size (minimum 44px height).</li><li>This is frustrating work. Stay with it. Responsive design is what clients pay for.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 6</span><span class="dc-topic">Positioning, z-index, overflow — the "why does it break" concepts</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — positioning videos + YouTube supplement</span></div><ul class="task-list"><li>Watch: "Position in Webflow" (static, relative, absolute, fixed, sticky).</li><li>YouTube: search "Webflow position absolute tutorial" — watch one 15-min video from Flux Academy on this topic. Absolute positioning inside relative parents is used constantly for overlapping elements.</li><li>Watch: "Overflow in Webflow". Understand hidden vs visible vs scroll.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build a "floating badge" card and a sticky header</span></div><ul class="task-list"><li>Card with an absolutely positioned badge (like "New" or "Popular") in the top-right corner of the card.</li><li>Then make your navbar from day 4 sticky — it should stay at top while scrolling.</li><li>These two techniques appear in almost every premium site.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 7</span><span class="dc-topic">Week 1 project — build a full landing page from scratch</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · BUILD</span><span class="block-title">Build sessions 1: structure and layout</span></div><ul class="task-list"><li>Build a full 1-page website for a fake company ("TechFlow SaaS" or any name). Sections: Navbar, Hero, Features (3 cards), Testimonial, Simple footer.</li><li>No looking at tutorials today. Use only what you know. If you forget how to do something, that's fine — figure it out.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build session 2: styling and responsive</span></div><ul class="task-list"><li>Continue the same project. Make it fully responsive. Add a color palette (choose 1 accent color + white + dark). Apply consistent typography.</li><li>By 10pm this should be a complete, published Webflow site. Go to webflow.com/dashboard → publish on free subdomain. Share the link with no one yet — just see it live.</li></ul><div class="note-box">This is your week 1 checkpoint. It will look basic. That is fine. You built a real website from scratch in 7 days starting from zero. That is real progress.</div></div></div></div>
+    <div class="week-section"><div class="week-label">Week 2 — Days 8–14 — CMS. The thing that makes you a professional, not just a hobbyist.</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 8</span><span class="dc-topic">What is CMS? Collections, fields, dynamic lists</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — full CMS series Part 1</span></div><ul class="task-list"><li>Watch: "Intro to Webflow CMS", "Creating collections", "Collection fields". Take notes on every field type: text, rich text, image, reference, multi-reference, switch, color.</li><li>The CMS is what allows clients to update their own content without touching Webflow. This is what justifies higher project prices.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build a blog CMS collection</span></div><ul class="task-list"><li>New Webflow project. Create a "Blog Posts" collection with: Title (text), Slug (auto), Date (date), Thumbnail (image), Author (text), Body (rich text), Category (option).</li><li>Add 4 fake blog posts with real content (copy from any article, just to fill it).</li><li>Create a blog listing page that shows all posts dynamically. Create a blog post template page.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 9</span><span class="dc-topic">CMS filtering, reference fields, multi-reference</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — CMS advanced: reference fields and filtering</span></div><ul class="task-list"><li>Watch: "Reference fields", "Multi-reference fields", "Filtering collection lists". These are the advanced CMS features clients actually need.</li><li>Example use case: a portfolio site where each project is linked to a category, and you can filter by category.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build a portfolio CMS with categories</span></div><ul class="task-list"><li>Create two collections: "Projects" and "Categories". Link them with a reference field.</li><li>Build a portfolio listing page. Add filter tabs by category (use Finsweet Attributes free — finsweet.com/attributes). This is a very common client request.</li><li>Add 5 fake portfolio items.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 10–11</span><span class="dc-topic">CMS project — full agency website with CMS</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · BUILD</span><span class="block-title">Both days: build a complete fake agency website</span></div><ul class="task-list"><li>Pages: Home, About, Services (CMS), Portfolio (CMS), Blog (CMS), Contact.</li><li>Services collection: service name, description, icon, price range.</li><li>Team members collection: name, role, photo, bio.</li><li>All pages linked and navigable. Fully responsive.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Continue building — no switching to videos</span></div><ul class="task-list"><li>Continue the agency site. Style everything consistently. Same color palette throughout. Same spacing rhythm.</li><li>If you get stuck on something CMS-related, go to Webflow University specifically for that question, then return to building.</li></ul><div class="note-box">Two full building days. No new video lessons unless you're genuinely stuck. Build your way through confusion — this is how real skill forms.</div></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 12</span><span class="dc-topic">Client editor mode + style guide setup</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — Editor mode, client handoff</span></div><ul class="task-list"><li>Watch: "Webflow Editor overview", "Setting up client editing", "Style guide setup in Webflow".</li><li>YouTube: search "Webflow client first style guide" — watch Finsweet's tutorial. Client-First is a naming convention for Webflow classes that professional agencies use. Learn the basics.</li><li>This is what separates $300 freelancers from $3,000 freelancers — the ability to hand off a clean, organized project.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Apply Client-First naming to your agency project</span></div><ul class="task-list"><li>Rename your classes in the agency project using Client-First conventions. This will feel slow and annoying. That's fine.</li><li>Set up a style guide page: all heading sizes, all button styles, all color swatches, all spacing examples. Every professional Webflow project has this page.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 13–14</span><span class="dc-topic">Week 2 deep build — finish and polish the agency site</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm + 6pm – 10pm · BUILD BOTH DAYS</span><span class="block-title">Polish, SEO basics, and publish</span></div><ul class="task-list"><li>Page titles and meta descriptions for every page. Open Graph images. These are basic SEO that clients expect.</li><li>Make every page pixel-perfect on mobile. Fix every spacing issue. Check every font size.</li><li>Add a 404 page. Add a contact form (Webflow form, connected to email notification).</li><li>Publish live. This is portfolio piece #1 in progress — but don't call it done yet.</li></ul><div class="note-box warn">End of week 2 check: Can you build a multi-page CMS site from scratch without looking anything up? If not — spend Saturday redoing one section from memory. Don't rush to week 3.</div></div></div></div></div>
+    <div class="week-section"><div class="week-label">Week 3 — Days 15–21 — Interactions and Animations. The exciting week.</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 15</span><span class="dc-topic">Interactions overview — triggers, animations, timelines</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — Interactions series from start</span></div><ul class="task-list"><li>Watch: "Intro to Interactions", "Page load animations", "Mouse/hover animations". Every video in the interactions series. All of it today.</li><li>Key concepts: triggers (page load, scroll into view, hover, click), actions (move, fade, scale, rotate), timing (duration, delay, easing).</li><li>Watch the easing curves carefully. The difference between a cheap animation and a premium animation is almost entirely in the easing curve.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Add 5 different animations to your agency site</span></div><ul class="task-list"><li>1. Page load: hero heading fades up on page load (opacity 0→1, move up 30px, 0.6s ease out).</li><li>2. Scroll trigger: each features card fades in with a stagger (0.1s between each card).</li><li>3. Hover: button background color transition + slight scale.</li><li>4. Hover: nav links underline draw animation.</li><li>5. Scroll trigger: counter numbers animate up (use Webflow interactions + a number element).</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 16</span><span class="dc-topic">Scroll animations — the thing clients actually pay premium for</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — ScrollTrigger + GSAP visual integration</span></div><ul class="task-list"><li>Watch: "Scroll-based animations in Webflow", "GSAP in Webflow (visual, no code)". As of late 2025 Webflow has GSAP built in visually — you don't need to write code.</li><li>YouTube: search "Webflow scroll animation 2025 Flux Academy" — watch 1 video (20–30 min).</li><li>Learn: scrub animations (tied to scroll position), pin elements, parallax effects.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build a scroll-driven section from scratch</span></div><ul class="task-list"><li>A section where text slides in from the left as you scroll down to it.</li><li>A parallax hero background (image moves slower than scroll).</li><li>A "sticky" section where a heading stays pinned while content scrolls past it. This effect appears on Apple product pages and costs clients $2k+ when done right.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 17–19</span><span class="dc-topic">Clone 1 premium Awwwards site — your most important 3 days so far</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm + 6pm – 10pm · CLONE</span><span class="block-title">3 full days: pick 1 site from Awwwards and clone it</span></div><ul class="task-list"><li>Go to awwwards.com. Find a "Site of the Day" from the last 3 months. Pick one that has scroll animations but isn't 3D (no Spline yet). Good example types: SaaS landing page, creative agency, product marketing page.</li><li>Day 17: Clone the navbar and hero section only. Don't rush. Get every pixel right.</li><li>Day 18: Clone the next 3–4 sections. Focus on matching the animations.</li><li>Day 19: Clone the footer and do full responsive. Publish it.</li></ul><div class="note-box">You will spend entire hours on one animation. This is normal. Cloning is the single fastest way to build professional-level skill. Every hour here is worth 3 hours of tutorial watching.</div></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 20–21</span><span class="dc-topic">Week 3 project — first portfolio-quality site</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm + 6pm – 10pm · BUILD</span><span class="block-title">Build "Portfolio Piece #1" — a SaaS landing page</span></div><ul class="task-list"><li>Build a landing page for a fake SaaS product. Name it something real-sounding like "Structr" or "Loomio AI".</li><li>Must include: animated hero, scroll-triggered feature cards, animated testimonials section, pricing table, CTA section, footer.</li><li>Every section has at least one intentional animation. Nothing is static.</li><li>Use a real font pairing from Google Fonts: Inter for body + Syne or Manrope for headings.</li><li>Publish live. This is portfolio piece #1.</li></ul></div></div></div></div>
+    <div class="week-section"><div class="week-label">Week 4 — Days 22–30 — E-commerce, forms, SEO, and complete project</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Day 22</span><span class="dc-topic">Webflow E-commerce fundamentals</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Webflow University — E-commerce series</span></div><ul class="task-list"><li>Watch the full Webflow E-commerce series. Products, variants, checkout flow, order management.</li><li>You don't need to be a deep e-commerce expert yet, but you need to know how to set up a basic product catalog, cart, and checkout so you can say yes to e-commerce clients.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Build a simple product page and cart</span></div><ul class="task-list"><li>Create a fake store: 4 products, each with 2 variants (size, color). Product listing page. Product detail page. Working Webflow cart.</li><li>Don't worry about payment processing for now. Just build the visual flow.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 23–25</span><span class="dc-topic">SEO, forms, performance, accessibility</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">3 days of professional skills that clients expect</span></div><ul class="task-list"><li>Day 23 AM: Webflow SEO — meta tags, Open Graph, sitemap, redirects, canonical URLs, page speed optimization (lazy loading, image compression).</li><li>Day 24 AM: Webflow Forms — native forms, Zapier integration (form → email notification → Google Sheet). Logic forms. This is how you automate client lead capture.</li><li>Day 25 AM: Webflow Finsweet Attributes — free toolkit. Learn: CMS Filter, CMS Sort, CMS Load More, Tabs CMS. These solve 80% of "can Webflow do this?" client questions.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Apply each skill to a project the same evening</span></div><ul class="task-list"><li>Day 23 PM: Go through your portfolio piece #1 and optimize every SEO field. Run it through PageSpeed Insights. Fix 2–3 issues.</li><li>Day 24 PM: Add a multi-step contact form to any project. Connect it to a Google Sheet via Zapier (free tier). This is a real client deliverable skill.</li><li>Day 25 PM: Add filterable CMS to any project using Finsweet Attributes. Build a portfolio grid with category filter tabs.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 26–30</span><span class="dc-topic">Month 1 final project — Portfolio Piece #2 (full business website)</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm + 6pm – 10pm · ALL BUILD</span><span class="block-title">5 days, zero tutorials, full original design</span></div><ul class="task-list"><li>Build a complete website for a fake local business or brand. Suggested: a design agency, a restaurant, or a consulting firm. Your choice.</li><li>Must have: CMS blog, CMS team page, contact form → Google Sheet, scroll animations on every section, full mobile optimization, published live.</li><li>Do NOT copy a template. Do NOT follow a tutorial. This is a test of everything you've learned.</li><li>Day 30: Review and rate yourself honestly. Does this look like something a real client would pay $500 for? If yes — month 1 complete. If no — spend one more week polishing before moving to month 2.</li></ul><div class="note-box warn">Month 1 milestone check: you should be able to build any standard business website from scratch. Not quickly — but correctly. Speed comes in month 2–3. Correctness must come now.</div></div></div></div></div>
+    <button class="ask-btn" onclick="document.getElementById('m2').scrollIntoView({ behavior: 'smooth', block: 'start' })">↓ Continue to Month 2 ↓</button>
+  </div>
+
+  <!-- ======================== MONTH 2 ======================== -->
+  <div id="m2" class="month-section">
+    <div class="milestone-banner mb-m2 ms-m2"><div class="ms-title">Month 2 milestone — "I am a Webflow Developer + Designer"</div><div class="ms-body">By end of month 2 you can say: I use Relume to build site structures in minutes, I can read any Figma file and convert it to Webflow, I build premium animated layouts, my work looks like it costs $1,500–$3,000, and I have 3 strong portfolio pieces ready to show clients.</div></div>
+    <div class="week-section"><div class="week-label">Week 5 — Days 31–37 — Figma basics + reading client design files</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 31–33</span><span class="dc-topic">Figma for Webflow developers — how to read design files</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Figma fundamentals — 3 day focus</span></div><ul class="task-list"><li>Day 31: Create free Figma account. Watch: "Figma for beginners" by Figma on YouTube (official series, ~2hrs). Learn: frames, layers, components, inspect panel.</li><li>Day 32: Learn the Inspect panel specifically — this is what you use when a client sends you a Figma file. It shows you exact px values, fonts, colors, spacing. This is how you translate design to Webflow accurately.</li><li>Day 33: Download free Figma templates from Figma Community. Open 3 different templates. Practice reading the layers. Understand how components and auto-layout work.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · BUILD</span><span class="block-title">Figma → Webflow conversion practice</span></div><ul class="task-list"><li>Take a free Figma landing page template (search "landing page" in Figma Community). Build that design in Webflow from the Figma file.</li><li>Use the Inspect panel to copy exact values. Match the design as closely as possible.</li><li>This is the most common real-world freelance workflow. Get comfortable with it now.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 34–37</span><span class="dc-topic">Relume — build sites 4x faster with AI wireframes</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN + BUILD</span><span class="block-title">Learn Relume and immediately use it</span></div><ul class="task-list"><li>Day 34: Go to relume.io. Watch their official tutorial (30 min). Create account (free tier available). Type a site description: "A SaaS company that helps marketing teams manage social media". Generate a full site map and wireframe. Export to Webflow.</li><li>Day 35: Use the exported Relume wireframe. Style it from scratch — change every color, every font, every spacing. The wireframe is just the skeleton. You provide the design.</li><li>Day 36–37: Build a complete project using Relume start to finish. Time yourself. Goal: a 10-section landing page with Relume structure + your custom design in 2 days instead of 5.</li></ul><div class="resource-row"><span class="res-icon">→</span><span class="res-text">relume.io — free tier available, paid plans when earning</span></div></div></div></div></div>
+    <div class="week-section"><div class="week-label">Week 6 — Days 38–44 — Advanced animations and premium design</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 38–40</span><span class="dc-topic">Lottie animations + Rive — making sites feel alive</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN</span><span class="block-title">Lottie + Rive integration into Webflow</span></div><ul class="task-list"><li>Day 38: Lottie files (lottiefiles.com). These are animated vector files you can embed in Webflow for free. Browse the library. Learn how to add a Lottie to Webflow using the embed element. Find 5 Lotties you'd use in real projects.</li><li>Day 39: Rive (rive.app). More advanced interactive animations. Watch: "Rive in Webflow" tutorial on YouTube. Learn to embed a Rive animation and trigger it on hover/scroll.</li><li>Day 40: Build a features section where each feature has a Lottie icon that plays on hover. This is a $500 upgrade to any site immediately.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 41–44</span><span class="dc-topic">Clone 2nd premium site + design taste training</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm + 6pm – 10pm · CLONE + DESIGN</span><span class="block-title">4 days — second Awwwards clone + design analysis</span></div><ul class="task-list"><li>Pick a harder Awwwards site this time. One with advanced scroll effects and premium typography.</li><li>Day 41–43: Clone it section by section. Spend time matching the easing and timing, not just the layout.</li><li>Day 44: Design analysis day. Open 10 Awwwards sites. For each one, write down: what font pair is used, what is the primary accent color, how much whitespace between sections, what is the first interaction the user sees. This builds conscious design vocabulary.</li></ul></div></div></div></div>
+    <div class="week-section"><div class="week-label">Weeks 7–8 — Days 45–60 — Portfolio Piece #3 + Fiverr gig preparation</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 45–54</span><span class="dc-topic">Portfolio Piece #3 — your best work yet</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm + 6pm – 10pm · BUILD</span><span class="block-title">10 days — design from Figma first, then build in Webflow</span></div><ul class="task-list"><li>This time do it the professional way: design in Figma first, then build in Webflow. Pick a niche: fintech, health startup, or AI tool landing page.</li><li>Day 45–47: Design all pages in Figma. Desktop only for now.</li><li>Day 48–52: Build in Webflow from your Figma file. Every animation intentional. Relume for structure if you want.</li><li>Day 53–54: Responsive. SEO. Publish. This becomes your showpiece — the one link you send to every prospective client.</li></ul><div class="note-box">This piece should make someone think: "How much does this person charge?" That's the goal. Not just a nice website — a website that screams premium value.</div></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 55–60</span><span class="dc-topic">Fiverr profile + Upwork profile setup</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · BUILD PROFILES</span><span class="block-title">Create Fiverr and Upwork accounts and gigs</span></div><ul class="task-list"><li>Day 55: Fiverr account. Profile photo (professional, good lighting). Bio in clear English. Gig title: "I will build a high-converting Webflow website for SaaS startups". 3 packages: Basic $150, Standard $350, Premium $650.</li><li>Day 56: Gig thumbnail — spend the full 4 hours making this. Use Canva or Figma. Show your best portfolio piece as the hero image. Clean, clear, professional. This thumbnail is more important than your description.</li><li>Day 57: Write gig description. First line hooks the client. Describe the problem you solve (not just the service). List exactly what's included in each package. Add FAQ section.</li><li>Day 58: Gig video — sit in front of camera, record 60 seconds, show your portfolio, explain what you do and who it's for. Clear English. Smile. This alone boosts click rate.</li><li>Day 59: Upwork profile — same information, add portfolio pieces. Set hourly rate at $25–35/hr to start.</li><li>Day 60: Publish both. Share your Fiverr gig on LinkedIn with 1 portfolio screenshot. Share in 3 Bangladesh freelancer Facebook groups.</li></ul></div></div></div></div>
+    <button class="ask-btn" onclick="document.getElementById('m3').scrollIntoView({ behavior: 'smooth', block: 'start' })">↓ Continue to Month 3 ↓</button>
+  </div>
+
+  <!-- ======================== MONTH 3 ======================== -->
+  <div id="m3" class="month-section">
+    <div class="milestone-banner mb-m3 ms-m3"><div class="ms-title">Month 3 milestone — "I am a Webflow Developer + Designer + Active Freelancer"</div><div class="ms-body">By end of month 3: you have your first real paying client, you have at least 1 Fiverr or Upwork review, you can handle a full client project independently from brief to delivery, and you're submitting proposals weekly. You may not be earning much yet — but the machine is running.</div></div>
+    <div class="week-section"><div class="week-label">Weeks 9–10 — Days 61–74 — Clone 3rd site + first client outreach</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 61–67</span><span class="dc-topic">Hardest clone yet — advanced scroll + layout</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · CLONE</span><span class="block-title">Pick the hardest Awwwards site you can clone</span></div><ul class="task-list"><li>This time pick something with: advanced typography, scroll-pinned sections, hover effects, and a horizontal scroll section if possible.</li><li>7 full days. One section per day minimum. Push your limit every day.</li><li>You will feel like you don't know enough. That feeling means you're growing.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · OUTREACH</span><span class="block-title">First client hunt — parallel with building</span></div><ul class="task-list"><li>Every evening this week: send 5 Upwork proposals per day. Find Webflow jobs posted in the last 24 hours. Write a custom proposal for each — reference their project specifically.</li><li>Also: message 10 people in your personal network (friends, family, ex-classmates, anyone with a business) about building or redesigning their website.</li><li>Fiverr: check Buyer Requests section every evening. Reply to all relevant ones.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 68–74</span><span class="dc-topic">First real client project</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · BUILD CLIENT PROJECT</span><span class="block-title">Your first real client (free or $150–$300)</span></div><ul class="task-list"><li>Whether it's a friend's business, a local shop, or a Fiverr order — treat it like a $5,000 project.</li><li>Process: discovery call (or message), understand their goals, build in Webflow, present with a Loom video walkthrough, collect feedback, revise, deliver.</li><li>If no client yet: build a free website for a real local business near you, deliver it, and ask for a written testimonial and a Fiverr/Upwork review even if they didn't pay.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · CONTINUE + OUTREACH</span><span class="block-title">Client work + 5 proposals per day</span></div><ul class="task-list"><li>Continue client project in the evening. Never miss a self-imposed deadline with a client.</li><li>Keep sending 5 Upwork proposals every single evening. Consistency in outreach is what fills your pipeline.</li></ul></div></div></div></div>
+    <div class="week-section"><div class="week-label">Weeks 11–12 — Days 75–90 — Framer starts + pipeline building</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 75–84</span><span class="dc-topic">Framer fundamentals — 10 days</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN FRAMER</span><span class="block-title">Framer University + first Framer builds</span></div><ul class="task-list"><li>Day 75–76: framer.com/learn — watch the full "Getting started" series. Framer is easier than Webflow once you know Webflow. Expect to feel productive within 3 days.</li><li>Day 77–79: Build your first Framer site. A startup landing page. 6 sections. Framer's built-in animations are beautiful and easy — use them aggressively.</li><li>Day 80–84: Clone one Framer site from Framer's community templates. Understand how Framer's component system works vs Webflow's symbols.</li></ul><div class="note-box">Framer key difference from Webflow: it feels like Figma came to life. If you have spent 2 months in Webflow, Framer will take 2–3 weeks to become productive in. Not 2 months.</div></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · FREELANCE PIPELINE</span><span class="block-title">Every evening — proposals and client follow-up</span></div><ul class="task-list"><li>5 Upwork proposals per evening. Personalized every time.</li><li>Respond to every Fiverr message within 30 minutes during 6–10pm window.</li><li>Post one LinkedIn update per week showing your latest work. One screenshot with a short caption about what you built.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 85–90</span><span class="dc-topic">Month 3 wrap — portfolio review, raise rates, plan month 4</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · REVIEW + REFINE</span><span class="block-title">Audit your portfolio and profiles</span></div><ul class="task-list"><li>Look at your 3 portfolio pieces with fresh eyes. Does each one have a clear title? Does it say what the site is for and who it serves? Could a potential client understand it in 8 seconds?</li><li>If any piece looks weak — spend 2 days rebuilding or improving it. Don't be attached to old work.</li><li>Update your Fiverr and Upwork profiles with the newest work.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · FRAMER PORTFOLIO PIECE</span><span class="block-title">Build 1 Framer-specific portfolio piece</span></div><ul class="task-list"><li>A startup landing page built entirely in Framer. This shows potential clients you can work in both tools.</li><li>Use Framer's smart components and CMS for a blog section. Publish on Framer's free subdomain.</li><li>Add this to Fiverr and Upwork portfolio.</li></ul></div></div></div></div>
+    <button class="ask-btn" onclick="document.getElementById('m4').scrollIntoView({ behavior: 'smooth', block: 'start' })">↓ Continue to Month 4 ↓</button>
+  </div>
+
+  <!-- ======================== MONTH 4 ======================== -->
+  <div id="m4" class="month-section">
+    <div class="milestone-banner mb-m4 ms-m4"><div class="ms-title">Month 4 milestone — "I am a Webflow + Framer + 3D Developer"</div><div class="ms-body">By end of month 4: you are fluent in both Webflow and Framer, you can add interactive 3D Spline elements to any website, your portfolio has at least 1 piece with 3D that immediately sets you apart from 95% of Webflow freelancers, and you have 2–4 Fiverr/Upwork reviews.</div></div>
+    <div class="week-section"><div class="week-label">Weeks 13–14 — Days 91–104 — Framer advanced + Spline 3D begins</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 91–97</span><span class="dc-topic">Framer advanced — CMS, forms, custom components</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN + BUILD FRAMER</span><span class="block-title">Framer CMS, advanced interactions, custom code</span></div><ul class="task-list"><li>Days 91–93: Framer CMS in depth. How to build a blog, case studies, team pages with Framer CMS. The key limitation vs Webflow: Framer CMS is simpler but fewer relational fields. Know the ceiling so you can advise clients properly.</li><li>Days 94–95: Framer custom components with overrides. This is where your CSE background helps — you can write a small amount of React code to customize Framer components beyond what the UI allows.</li><li>Days 96–97: Build a complete Framer agency site from scratch. Framer CMS blog, animated homepage, contact form (Framer native or Tally.so embed). Publish live.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 98–104</span><span class="dc-topic">Spline 3D — your biggest competitive advantage</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN SPLINE</span><span class="block-title">Spline fundamentals — 7 days</span></div><ul class="task-list"><li>Day 98: Create account at spline.design (free). Watch Spline's official YouTube tutorials — "Getting Started" playlist. Learn: 3D objects, materials, lighting, camera angles.</li><li>Day 99: Learn Spline interactions — hover effects on 3D objects, scroll triggers on 3D elements. This is the premium feature. A 3D object that reacts to mouse hover is what makes tech companies pay $8,000+ for a landing page.</li><li>Day 100–101: Build your first Spline scene: a floating 3D product mockup (phone or laptop) that rotates slowly and responds to mouse hover.</li><li>Day 102: Embed the Spline scene into a Webflow project. This is the critical skill — combining Spline + Webflow in one project.</li><li>Day 103–104: Build a complete hero section: animated Spline 3D object on the right, text on the left, scroll-triggered animation. This is your "wow" portfolio piece.</li></ul><div class="resource-row"><span class="res-icon">→</span><span class="res-text">spline.design — free plan, export embed code, paste into Webflow</span></div></div></div></div></div>
+    <div class="week-section"><div class="week-label">Weeks 15–16 — Days 105–120 — Portfolio Piece with 3D + active freelancing</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 105–116</span><span class="dc-topic">Portfolio Piece #4 — Webflow + Spline 3D showpiece</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · BUILD SHOWPIECE</span><span class="block-title">12 days — the project that puts you in a different league</span></div><ul class="task-list"><li>Build a premium SaaS or fintech landing page that includes: an interactive Spline 3D hero element, GSAP scroll animations (visual mode in Webflow), Relume-generated structure, Lottie icons, full CMS for blog, and a Framer-quality feel using Webflow.</li><li>This single piece should make clients think "this person charges at least $3,000." That is the target quality.</li><li>Don't rush. 12 days is enough. Every hour of polish counts.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · FREELANCE ONLY</span><span class="block-title">Evening = 100% freelance activity</span></div><ul class="task-list"><li>5 Upwork proposals per evening. No exceptions.</li><li>Check Fiverr Buyer Requests. Reply to all relevant ones with custom messages.</li><li>Respond to all client messages within 30 minutes.</li><li>By day 116 you should have at least 2 Fiverr or Upwork reviews. If not — offer 2 free or discounted projects to anyone willing to review publicly.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 117–120</span><span class="dc-topic">Month 4 milestone check + raise rates</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · STRATEGY</span><span class="block-title">Review, raise rates, plan month 5</span></div><ul class="task-list"><li>Review all 4 portfolio pieces. Remove the weakest one if needed — quality over quantity.</li><li>Raise Fiverr prices: Basic $250, Standard $550, Premium $1,000. You have a portfolio and reviews now. Cheap pricing at this stage hurts your positioning.</li><li>Write a LinkedIn post summarizing your 4-month journey. What you learned. What you built. Include 2–3 screenshots. This post will generate DMs from potential clients.</li></ul></div></div></div></div>
+    <button class="ask-btn" onclick="document.getElementById('m5').scrollIntoView({ behavior: 'smooth', block: 'start' })">↓ Continue to Month 5 ↓</button>
+  </div>
+
+  <!-- ======================== MONTH 5 ======================== -->
+  <div id="m5" class="month-section">
+    <div class="milestone-banner mb-m5 ms-m5"><div class="ms-title">Month 5 milestone — "I am a Webflow + Framer + 3D + Animation Expert. I charge real rates."</div><div class="ms-body">By end of month 5: you are writing GSAP code for ultra-custom animations, your Fiverr gig is generating consistent orders, you are earning $300–$900/month minimum, you charge $500–$1,500 per project, and you have a pipeline of proposals going out every week.</div></div>
+    <div class="week-section"><div class="week-label">Weeks 17–18 — Days 121–134 — GSAP visual + light code</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 121–128</span><span class="dc-topic">GSAP in Webflow — the animation layer that earns premium rates</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · LEARN GSAP</span><span class="block-title">GSAP fundamentals — your CSE background makes this easier</span></div><ul class="task-list"><li>Day 121: Watch "GSAP Crash Course" on YouTube by GreenSock (official). Understand: gsap.to(), gsap.from(), gsap.timeline(), ease types. With your CSE background this syntax will feel familiar.</li><li>Day 122: ScrollTrigger plugin specifically. This is what creates the scroll-driven animations you see on Apple, Linear, and other premium sites. Watch the ScrollTrigger tutorial series on GSAP's YouTube channel.</li><li>Day 123–124: In Webflow, GSAP is now available visually (late 2025 update). Use the visual GSAP panel first. Then add custom code for anything the visual panel can't do.</li><li>Day 125–128: Build 3 GSAP animation demos in Webflow: (1) Text split + stagger reveal, (2) Horizontal scroll section, (3) Pinned section where content changes on scroll while the background image stays fixed.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 129–134</span><span class="dc-topic">Integrate everything — GSAP + Spline + Webflow in one project</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · BUILD</span><span class="block-title">Portfolio Piece #5 — everything combined</span></div><ul class="task-list"><li>Build the most technically advanced piece in your portfolio. Webflow structure, Relume for layout speed, Spline 3D hero, GSAP scroll animations, Lottie icons, Framer Motion feel.</li><li>Target: a landing page that takes 60+ seconds to scroll through fully, with something interesting happening in every viewport.</li><li>Publish and add to all platforms.</li></ul></div></div></div></div>
+    <div class="week-section"><div class="week-label">Weeks 19–20 — Days 135–150 — Full freelance mode</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 135–150</span><span class="dc-topic">Both sessions now split between skill + income every single day</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · CLIENT WORK</span><span class="block-title">Morning block = client projects</span></div><ul class="task-list"><li>If you have active client projects: this block is 100% dedicated to client delivery. Treat every project like your reputation depends on it — because it does.</li><li>If no active projects: use this block to build more portfolio pieces targeting specific niches (fintech, health, SaaS, creative agency). Each niche requires a different visual language.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · PIPELINE</span><span class="block-title">Evening block = 100% pipeline and outreach</span></div><ul class="task-list"><li>5 Upwork proposals every single evening. Never skip this. This is the non-negotiable habit.</li><li>Fiverr: check messages, check Buyer Requests, reply immediately to everything.</li><li>LinkedIn: one post per week. Show your work. Build in public. Even 300 followers seeing your posts will generate 1–2 client inquiries per month.</li><li>Direct outreach: find 5 SaaS companies on ProductHunt with bad websites. Message them on LinkedIn. Offer a free audit of their current site and a redesign concept.</li></ul></div></div></div></div>
+    <button class="ask-btn" onclick="document.getElementById('m6').scrollIntoView({ behavior: 'smooth', block: 'start' })">↓ Continue to Month 6 ↓</button>
+  </div>
+
+  <!-- ======================== MONTH 6 ======================== -->
+  <div id="m6" class="month-section">
+    <div class="milestone-banner mb-m6 ms-m6"><div class="ms-title">Month 6 milestone — "I run a Webflow freelance business. I am building toward an agency."</div><div class="ms-body">By end of month 6: you are earning $600–$2,000/month (worst to normal case), you have 10+ reviews across platforms, your rates are $800–$2,000 per project, and you have a clear system for acquiring clients, delivering projects, and collecting reviews. The agency path is in sight.</div></div>
+    <div class="week-section"><div class="week-label">Weeks 21–24 — Days 151–180 — Systems, retainers, and scale</div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 151–165</span><span class="dc-topic">Build systems — so you can handle more clients without working more hours</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · SYSTEMS</span><span class="block-title">Build repeatable processes for every project phase</span></div><ul class="task-list"><li>Client onboarding form: a Tally.so form that every new client fills in. Gets you: business goals, target audience, brand colors, competitors, content, deadline. Saves 1–2 back-and-forth calls.</li><li>Webflow project template: create a master Webflow project with your standard component library, style guide, Client-First classes pre-set. Duplicate this for every new project. Saves 4–6 hours per project.</li><li>Delivery checklist: a Notion doc with 30 items to check before every delivery (mobile responsive, SEO meta, page speed, broken links, form working, etc).</li><li>Retainer proposal template: a document offering clients a monthly maintenance retainer ($150–$300/mo) for content updates, speed optimization, and new sections. Retainers = predictable monthly income.</li></ul></div></div></div>
+    <div class="day-card"><div class="dc-head" onclick="tog(this)"><span class="dc-day">Days 166–180</span><span class="dc-topic">Agency path: hire first junior, specialize your niche</span><span class="dc-arrow">▼</span></div><div class="dc-body"><div class="block"><div class="block-header"><span class="time-badge am">10am – 2pm · SCALE</span><span class="block-title">If earning $1,500+/mo: hire a junior Webflow dev</span></div><ul class="task-list"><li>Post a job in Bangladesh freelancer Facebook groups: "Looking for a junior Webflow developer for part-time work. Must know Webflow basics. Will train." Pay: $5–$8/hr to start.</li><li>They handle: basic builds from your Relume wireframes, responsive fixes, client revision rounds. You handle: design direction, animations, client communication, new business.</li><li>This doubles your capacity without doubling your hours.</li></ul></div><div class="block"><div class="block-header"><span class="time-badge pm">6pm – 10pm · NICHE DOWN</span><span class="block-title">Pick 1 niche and own it</span></div><ul class="task-list"><li>By month 6 you should know which type of client you enjoyed most and which paid best. Go deep into that niche.</li><li>Update your Fiverr title, Upwork headline, and LinkedIn bio to reflect specialization. "Webflow developer for SaaS startups" is more valuable than "Webflow developer". Specialists charge more. Generalists compete on price.</li><li>Create 1 case study per month: a before/after of a client project, what the client needed, what you built, what changed for their business. These case studies are your sales collateral for years.</li></ul></div></div></div></div>
+    <button class="ask-btn" onclick="document.getElementById('m1').scrollIntoView({ behavior: 'smooth', block: 'start' })">↑ Back to Month 1 ↑</button>
+  </div>
+
+  <footer>📌 Click any day to expand. Tick checkboxes → tracks progress across all months. All 180 days are here, nothing hidden.</footer>
+</div>
+
+<script>
+  // Progress & localStorage
+  function getDayId(dayCard) {
+    const daySpan = dayCard.querySelector('.dc-day');
+    if (!daySpan) return null;
+    let txt = daySpan.innerText.trim();
+    if (txt.includes('Days')) txt = txt.replace('Days', 'Day');
+    return txt.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
+  }
+
+  function initCheckboxes() {
+    const allCards = document.querySelectorAll('.day-card');
+    allCards.forEach(card => {
+      const head = card.querySelector('.dc-head');
+      if (head && !card.querySelector('.day-check')) {
+        const checkDiv = document.createElement('div');
+        checkDiv.className = 'day-check';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        const id = getDayId(card);
+        if (id && localStorage.getItem(`day_${id}`) === 'true') cb.checked = true;
+        cb.addEventListener('change', (e) => {
+          e.stopPropagation();
+          const dayId = getDayId(card);
+          if (dayId) localStorage.setItem(`day_${dayId}`, cb.checked);
+          updateGlobalProgress();
+        });
+        checkDiv.appendChild(cb);
+        const labelSpan = document.createElement('span');
+        labelSpan.innerText = 'done';
+        checkDiv.appendChild(labelSpan);
+        head.appendChild(checkDiv);
+      }
+    });
+    updateGlobalProgress();
+  }
+
+  function updateGlobalProgress() {
+    const allCards = document.querySelectorAll('.day-card');
+    let total = 166;   // ← change this line
+    let completed = 0;
+    allCards.forEach(card => {
+      const cb = card.querySelector('.day-check input');
+      if (cb && cb.checked) completed++;
+    });
+    document.getElementById('completedStats').innerText = completed;
+    document.getElementById('totalDaysCount').innerText = total;
+    const percent = total ? (completed / total) * 100 : 0;
+    document.getElementById('globalProgressFill').style.width = percent + '%';
+  }
+
+  function resetAllProgress() {
+    if (confirm('Reset all completed days? This cannot be undone.')) {
+      localStorage.clear();
+      document.querySelectorAll('.day-check input').forEach(cb => cb.checked = false);
+      updateGlobalProgress();
+    }
+  }
+
+  window.tog = function(head) {
+    const body = head.nextElementSibling;
+    const arrow = head.querySelector('.dc-arrow');
+    if (body) body.classList.toggle('open');
+    if (arrow) arrow.classList.toggle('open');
+  };
+
+  // smooth scroll to month
+  document.querySelectorAll('.month-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const monthId = btn.getAttribute('data-month');
+      const target = document.getElementById(monthId);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  document.getElementById('resetAllProgress').addEventListener('click', resetAllProgress);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initCheckboxes();
+  });
+</script>
+<a href="income_reality_calculator.html" style="position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #1D9E75, #0C6B4A); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 100; transition: all 0.2s;">💰 Income Reality →</a>
+</body>
+</html>
+```
