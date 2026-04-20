@@ -545,7 +545,7 @@
 
   function updateGlobalProgress() {
     const allCards = document.querySelectorAll('.day-card');
-    let total = 41;   // total checkable day-cards in this roadmap
+    let total = 166;   // ← change this line
     let completed = 0;
     allCards.forEach(card => {
       const cb = card.querySelector('.day-check input');
@@ -590,3 +590,4 @@
 <a href="income_reality_calculator.html" style="position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #1D9E75, #0C6B4A); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 100; transition: all 0.2s;">💰 Income Reality →</a>
 </body>
 </html>
+```
